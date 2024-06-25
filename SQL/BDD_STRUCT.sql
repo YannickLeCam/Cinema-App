@@ -21,12 +21,12 @@ USE `cinema-lecam`;
 
 -- Listage de la structure de table cinema-lecam. actor
 CREATE TABLE IF NOT EXISTS `actor` (
-  `id_actor` int NOT NULL,
+  `id_actor` int NOT NULL AUTO_INCREMENT,
   `id_person` int NOT NULL,
   PRIMARY KEY (`id_actor`),
   UNIQUE KEY `id_person` (`id_person`),
-  CONSTRAINT `FK__actor` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_actor_person` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema-lecam.actor : ~4 rows (environ)
 INSERT IGNORE INTO `actor` (`id_actor`, `id_person`) VALUES
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `casting` (
   UNIQUE KEY `id_actor_id_movie_id_role` (`id_actor`,`id_movie`,`id_role`),
   KEY `FK_casting_movie` (`id_movie`),
   KEY `FK_casting_role` (`id_role`),
-  CONSTRAINT `FK__actor_casting` FOREIGN KEY (`id_actor`) REFERENCES `actor` (`id_actor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_casting_actor` FOREIGN KEY (`id_actor`) REFERENCES `actor` (`id_actor`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_casting_movie` FOREIGN KEY (`id_movie`) REFERENCES `movie` (`id_movie`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_casting_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -86,12 +86,12 @@ INSERT IGNORE INTO `casting` (`id_actor`, `id_movie`, `id_role`) VALUES
 
 -- Listage de la structure de table cinema-lecam. director
 CREATE TABLE IF NOT EXISTS `director` (
-  `id_director` int NOT NULL,
+  `id_director` int NOT NULL AUTO_INCREMENT,
   `id_person` int NOT NULL,
   PRIMARY KEY (`id_director`),
   UNIQUE KEY `id_person` (`id_person`),
-  CONSTRAINT `FK__director` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_director_person` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema-lecam.director : ~4 rows (environ)
 INSERT IGNORE INTO `director` (`id_director`, `id_person`) VALUES
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `movie` (
   PRIMARY KEY (`id_movie`),
   KEY `FK_movie_director` (`id_director`),
   CONSTRAINT `FK_movie_director` FOREIGN KEY (`id_director`) REFERENCES `director` (`id_director`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema-lecam.movie : ~6 rows (environ)
 INSERT IGNORE INTO `movie` (`id_movie`, `name`, `date_release`, `duration`, `synopsis`, `poster`, `rate`, `id_director`) VALUES
@@ -126,13 +126,13 @@ INSERT IGNORE INTO `movie` (`id_movie`, `name`, `date_release`, `duration`, `syn
 
 -- Listage de la structure de table cinema-lecam. person
 CREATE TABLE IF NOT EXISTS `person` (
-  `id_person` int NOT NULL,
+  `id_person` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
   `firstname` varchar(255) NOT NULL DEFAULT '',
   `birthday` date NOT NULL,
   `genre` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_person`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema-lecam.person : ~8 rows (environ)
 INSERT IGNORE INTO `person` (`id_person`, `name`, `firstname`, `birthday`, `genre`) VALUES
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id_role`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema-lecam.role : ~9 rows (environ)
 INSERT IGNORE INTO `role` (`id_role`, `name`) VALUES
@@ -167,11 +167,11 @@ INSERT IGNORE INTO `role` (`id_role`, `name`) VALUES
 
 -- Listage de la structure de table cinema-lecam. type
 CREATE TABLE IF NOT EXISTS `type` (
-  `id_type` int NOT NULL,
+  `id_type` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_type`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table cinema-lecam.type : ~6 rows (environ)
 INSERT IGNORE INTO `type` (`id_type`, `name`) VALUES
