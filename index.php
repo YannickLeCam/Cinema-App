@@ -30,6 +30,9 @@ if (isset($_GET["action"])) {
             $id_role = filter_input(INPUT_GET,"id_role",FILTER_VALIDATE_INT);
             $ctrlCinema->detailRole($id_role);
             break;
+        case 'newMovie':
+            $ctrlCinema->newMovie();
+            break;
         default:
             //Mettre le chargement de l'index pur si pas reconnu
             break;
