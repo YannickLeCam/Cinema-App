@@ -15,6 +15,9 @@ if (isset($_GET["action"])) {
         case 'listActors': 
             $ctrlCinema->listActors(); 
             break;
+        case 'listRole':
+            $ctrlCinema->listRole();
+            break;
         case 'detailMovie':
             $id_movie = filter_input(INPUT_GET,"id_movie",FILTER_VALIDATE_INT);
             $ctrlCinema->detailMovie($id_movie);
