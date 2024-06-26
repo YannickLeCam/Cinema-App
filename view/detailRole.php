@@ -17,8 +17,8 @@ $dataRole = $requestRole->fetch();
 
 
 <?php
-$title = "Liste des films";
-$titleText = "Liste des films";
+$title = "Nom du Role";
+$titleText = "Nom du Role";
 $content = ob_get_clean();
 require_once "view/template.php";
 ?>

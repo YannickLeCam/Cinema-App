@@ -17,8 +17,8 @@ $data = $request->fetchAll();
 
 
 <?php
-$title = "Liste des films";
-$titleText = "Liste des films";
+$title = "Liste des Roles";
+$titleText = "Liste des Roles";
 $content = ob_get_clean();
 require_once "view/template.php";
 ?>

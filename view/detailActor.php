@@ -17,8 +17,8 @@ $dataRole = $requestRole->fetchAll();
 
 
 <?php
-$title = "Liste des films";
-$titleText = "Liste des films";
+$title = "Nom de l'Acteur";
+$titleText = "Nom de l'Acteur";
 $content = ob_get_clean();
 require_once "view/template.php";
 ?>

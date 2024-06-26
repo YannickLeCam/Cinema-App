@@ -34,5 +34,7 @@ if (isset($_GET["action"])) {
             //Mettre le chargement de l'index pur si pas reconnu
             break;
     }
+}else {
+    $ctrlCinema->index();
 }
 ?>

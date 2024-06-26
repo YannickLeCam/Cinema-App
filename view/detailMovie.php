@@ -17,8 +17,8 @@ $dataCasting = $requestCasting->fetchAll();
 
 
 <?php
-$title = "Liste des films";
-$titleText = "Liste des films";
+$title = "Nom du film";
+$titleText = "Nom du film";
 $content = ob_get_clean();
 require_once "view/template.php";
 ?>

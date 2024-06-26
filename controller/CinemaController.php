@@ -156,6 +156,11 @@ class CinemaController {
         
         require "view/listRole.php";
     }
+
+    public function index(){
+
+        require "view/index.php";
+    }
 }
 
 
