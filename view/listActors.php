@@ -1,8 +1,15 @@
-<?php ob_start()?>
+<?php ob_start();
 
 
 
+$data = $request->fetchAll();
+?>
 
+
+
+<pre>
+    <?=var_dump($data)?>
+</pre>
 
 
 
