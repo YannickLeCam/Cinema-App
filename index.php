@@ -3,6 +3,7 @@ use Controller\CinemaController;
 use Controller\MovieController;
 use Controller\ActorController;
 use Controller\DirectorController;
+use Controller\HomeController;
 use Controller\RoleController;
 use Controller\TypeController;
 
@@ -16,6 +17,7 @@ $ctrlActor = new ActorController();
 $ctrlRole = new RoleController();
 $ctrlType = new TypeController();
 $ctrlDirector = new DirectorController();
+$ctrlHome = new HomeController();
 
 if (isset($_GET["action"])) {
     if (isset($_GET['id'])) {
@@ -56,11 +58,12 @@ if (isset($_GET["action"])) {
             break;
         case 'detailDirector':
             $ctrlDirector->detailDirector($id);
+            break;
         default:
-            //Mettre le chargement de l'index pur si pas reconnu
+            $ctrlHome->index();
             break;
     }
 }else {
-    $ctrlCinema->index();
+    $ctrlHome->index();
 }
 ?>
