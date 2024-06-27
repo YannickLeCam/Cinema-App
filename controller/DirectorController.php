@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use DateTime;
 use Model\DirectorManager;
 
 class DirectorController {
@@ -24,6 +25,7 @@ class DirectorController {
     public function newDirector(){
         $directorManager = new DirectorManager();
         if (isset($_POST['SubmitDirectorForm'])) {
+            $data=[];
 
             $firstname = filter_input(INPUT_POST,'firstname',FILTER_SANITIZE_SPECIAL_CHARS);
             $name = filter_input(INPUT_POST,'name',FILTER_SANITIZE_SPECIAL_CHARS);
@@ -32,12 +34,20 @@ class DirectorController {
             $birthday = filter_input(INPUT_GET, 'date', FILTER_VALIDATE_REGEXP, array(
                 "options" => array("regexp" => "/^\d{4}-\d{2}-\d{2}$/")));
             
+            $data['firstname']=$firstname;
+            $data['name']=$name;
+            $data['birthday']=new DateTime($birthday);
+            $data['genre']=$genre;
+
             if ($firstname!="" && $name != "" && $genre != "" && $birthday=!"") {
-                if () {
-                    # code...
+                if ($directorManager->insertDirector($data)) {
+                    $_SESSION['success']="Le réalisateur a bien été enregistré";
+                }else {
+                    
                 }
             }else {
                 $_SESSION["error"]="Il semble manquer un atribut . . .";
+                $_SESSION['dataDirector']=$data;
                 header("Location:./index.php?createDirector");
                 die;
             }
