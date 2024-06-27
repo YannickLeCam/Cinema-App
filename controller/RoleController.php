@@ -41,6 +41,7 @@ class RoleController {
                 if (in_array($name , $role)) {
                     $_SESSION["error"]="$name semble deja avoir été créé . . .";
                     header("Location:./index.php?action=createRole"); // redirect to type form
+                    die;
                 }
             }
 
@@ -55,6 +56,7 @@ class RoleController {
                 $_SESSION["roleData"] = $data;
             }
             header("Location:./index.php?action=createRole"); // redirect to type form
+            die;
         }
         
         require "view/createRole.php";

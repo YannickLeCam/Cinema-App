@@ -2,10 +2,14 @@
 if (isset($_SESSION["error"])) {
     $error = $_SESSION["error"];
     unset($_SESSION["error"]);
+}else {
+    $error=null;
 }
 if (isset($_SESSION["success"])) {
     $success = $_SESSION["success"];
     unset($_SESSION["success"]);
+}else {
+    $success=null;
 }
 ?>
 <!DOCTYPE html>
@@ -21,8 +25,8 @@ if (isset($_SESSION["success"])) {
     <div id="content">
         <h1><?=$titleText ?></h1>
 
-        <?=isset($success)?"<p>$success</p>":""?>
-        <?=isset($error)?"<p>$error</p>":""?>
+        <?=$success?"<p>$success</p>":""?>
+        <?=$error?"<p>$error</p>":""?>
         <?=$content?>
     </div>
     

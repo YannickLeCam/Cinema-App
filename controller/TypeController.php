@@ -35,6 +35,7 @@ class TypeController {
                 if (in_array($name , $type)) {
                     $_SESSION["error"]="$name semble deja avoir été créé . . .";
                     header("Location:./index.php?action=createType"); // redirect to type form
+                    die;
                 }
             }
 
@@ -49,6 +50,7 @@ class TypeController {
                 $_SESSION["typeData"] = $data;
             }
             header("Location:./index.php?action=createType"); // redirect to type form
+            die;
         }
         
         require 'view/createType.php'; // form to create a new Type
