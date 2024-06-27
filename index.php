@@ -62,9 +62,6 @@ if (isset($_GET["action"])) {
             $ctrlDirector->detailDirector($id);
             break;
         case 'createType':
-            $ctrlType->createType();
-            break;
-        case 'newType':
             $ctrlType->newType();
             break;
         default:

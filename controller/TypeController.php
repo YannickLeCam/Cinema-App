@@ -20,19 +20,26 @@ class TypeController {
         require 'view/detailType.php';
     }
 
-    public function createType(){
-        require 'view/createType.php'; // form to create a new Type
-    }
 
+    
     public function newType(){
         $typeManager = new TypeManager();
-        if ($_POST["SubmitTypeForm"]) {
+        if (isset($_POST["SubmitTypeForm"])) {
             $data=[];
-
+            
             $name = filter_input(INPUT_POST,"name", FILTER_SANITIZE_SPECIAL_CHARS);
+            
+
+            $listTypes = $typeManager->getTypes();
+            foreach ($listTypes as $type) {
+                if (in_array($name , $type)) {
+                    $_SESSION["error"]="$name semble deja avoir été créé . . .";
+                    header("Location:./index.php?action=createType"); // redirect to type form
+                }
+            }
 
             $data['name']=$name;
-            
+
             if($typeManager->insertType($data)){
                 $_SESSION["success"]="Le genre $name a bien été créé !";
             }else {
@@ -41,9 +48,10 @@ class TypeController {
                 }
                 $_SESSION["typeData"] = $data;
             }
+            header("Location:./index.php?action=createType"); // redirect to type form
         }
         
-        header("Location:./index.php?action=createType"); // redirect to type form
+        require 'view/createType.php'; // form to create a new Type
     }
 }
 
