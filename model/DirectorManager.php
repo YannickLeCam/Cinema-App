@@ -25,7 +25,7 @@ class DirectorManager{
         $request = $this->pdo->prepare("
             SELECT person.name, person.firstname , person.birthday , person.genre , id_director
             FROM person,director
-            WHERE person.id_person = actor.id_person AND id_director = :id;
+            WHERE person.id_person = director.id_person AND id_director = :id;
         ");
         $request->bindParam(":id",$id);
         $request->execute();

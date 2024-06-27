@@ -2,6 +2,7 @@
 use Controller\CinemaController;
 use Controller\MovieController;
 use Controller\ActorController;
+use Controller\DirectorController;
 use Controller\RoleController;
 use Controller\TypeController;
 
@@ -14,8 +15,14 @@ $ctrlMovie = new MovieController();
 $ctrlActor = new ActorController();
 $ctrlRole = new RoleController();
 $ctrlType = new TypeController();
+$ctrlDirector = new DirectorController();
 
 if (isset($_GET["action"])) {
+    if (isset($_GET['id'])) {
+        $id = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
+    }else {
+        $id=null;
+    }
     switch ($_GET['action']) {
         case 'listMovies': 
             $ctrlMovie->listMovies();
@@ -27,16 +34,13 @@ if (isset($_GET["action"])) {
             $ctrlRole->listRole();
             break;
         case 'detailMovie':
-            $id_movie = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
-            $ctrlMovie->detailMovie($id_movie);
+            $ctrlMovie->detailMovie($id);
             break;
         case 'detailActor':
-            $id_actor = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
-            $ctrlActor->detailActor($id_actor);
+            $ctrlActor->detailActor($id);
             break;
         case 'detailRole':
-            $id_role = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
-            $ctrlRole->detailRole($id_role);
+            $ctrlRole->detailRole($id);
             break;
         case 'newMovie':
             $ctrlCinema->newMovie();
@@ -45,9 +49,13 @@ if (isset($_GET["action"])) {
             $ctrlType->listTypes();
             break;
         case 'detailType':
-            $id = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
             $ctrlType->detailType($id);
             break;
+        case 'listDirector':
+            $ctrlDirector->listDirectors();
+            break;
+        case 'detailDirector':
+            $ctrlDirector->detailDirector($id);
         default:
             //Mettre le chargement de l'index pur si pas reconnu
             break;
