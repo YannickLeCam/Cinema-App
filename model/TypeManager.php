@@ -21,7 +21,7 @@ class TypeManager{
     }
 
     public function getTypeDetail(int $id){
-        $request = $this->pdo->query("
+        $request = $this->pdo->prepare("
             SELECT *
             FROM type
             WHERE id_type=:id;
@@ -29,6 +29,21 @@ class TypeManager{
         $request->bindParam(":id",$id);
         $request->execute();
         return $request->fetch();
+    }
+
+    public function getFilmOfType(int $id){
+        $request = $this->pdo->prepare("
+            SELECT movie.*
+            FROM type
+            JOIN be
+            ON be.id_type = type.id_type
+            JOIN movie
+            ON movie.id_movie = be.id_movie
+            WHERE be.id_type = :id;
+        ");
+        $request->bindParam(":id",$id);
+        $request->execute();
+        return $request->fetchAll();
     }
 
 
