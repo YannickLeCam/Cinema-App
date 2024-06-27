@@ -1,13 +1,11 @@
 <?php ob_start();
 
-$dataActor = $requestActor->fetchAll();
-$dataRole = $requestRole->fetch();
 ?>
 
 
 
 <pre>
-    <?=var_dump($dataActor,$dataRole)?>
+    <?=var_dump($role,$listCasting)?>
 </pre>
 
 

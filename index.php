@@ -2,6 +2,7 @@
 use Controller\CinemaController;
 use Controller\MovieController;
 use Controller\ActorController;
+use Controller\RoleController;
 
 spl_autoload_register(function ($class_name) {
     include $class_name.'.php';
@@ -10,6 +11,7 @@ spl_autoload_register(function ($class_name) {
 $ctrlCinema = new CinemaController();
 $ctrlMovie = new MovieController();
 $ctrlActor = new ActorController();
+$ctrlRole = new RoleController();
 
 if (isset($_GET["action"])) {
     switch ($_GET['action']) {
@@ -20,7 +22,7 @@ if (isset($_GET["action"])) {
             $ctrlActor->listActors(); 
             break;
         case 'listRole':
-            $ctrlCinema->listRole();
+            $ctrlRole->listRole();
             break;
         case 'detailMovie':
             $id_movie = filter_input(INPUT_GET,"id_movie",FILTER_VALIDATE_INT);
@@ -32,7 +34,7 @@ if (isset($_GET["action"])) {
             break;
         case 'detailRole':
             $id_role = filter_input(INPUT_GET,"id_role",FILTER_VALIDATE_INT);
-            $ctrlCinema->detailRole($id_role);
+            $ctrlRole->detailRole($id_role);
             break;
         case 'newMovie':
             $ctrlCinema->newMovie();
