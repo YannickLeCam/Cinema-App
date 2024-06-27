@@ -2,13 +2,9 @@
 
 namespace Controller;
 
-use Model\ActorManager;
 use Model\Connect;
-use Model\RoleManager;
 
 class CinemaController {
-
-
 /**
  * The `newMovie` function in PHP retrieves data from the database related to movie types and actors,
  * and then loads a view for creating a new movie.
@@ -20,6 +16,7 @@ class CinemaController {
             SELECT *
             FROM type;
         ");
+        
         $requestType->execute();
 
         $requestDirector = $pdo->query("

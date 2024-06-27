@@ -46,5 +46,29 @@ class TypeManager{
         return $request->fetchAll();
     }
 
+    public function insertType(array $data):bool{
+        if (isset($data['name'])) {
+            try {
+                $request = $this->pdo->prepare("
+                    INSERT INTO type (name)
+                    VALUES(
+                    :name
+                    );
+                ");
+                $request->bindParam(':name',$data['name']);
+                if ($request->execute()) {
+                    return true;
+                }else {
+                    return false;
+                }
+            } catch (\Exception $e) {
+                $_SESSION["message"]=$e;
+                return false;
+            }
+
+        }
+        
+        return false;
+    }
 
 }

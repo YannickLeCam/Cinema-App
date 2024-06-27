@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 use Controller\CinemaController;
 use Controller\MovieController;
 use Controller\ActorController;
@@ -58,6 +60,12 @@ if (isset($_GET["action"])) {
             break;
         case 'detailDirector':
             $ctrlDirector->detailDirector($id);
+            break;
+        case 'createType':
+            $ctrlType->createType();
+            break;
+        case 'newType':
+            $ctrlType->newType();
             break;
         default:
             $ctrlHome->index();

@@ -1,3 +1,13 @@
+<?php
+if (isset($_SESSION["error"])) {
+    $error = $_SESSION["error"];
+    unset($_SESSION["error"]);
+}
+if (isset($_SESSION["success"])) {
+    $success = $_SESSION["success"];
+    unset($_SESSION["success"]);
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,6 +20,9 @@
 
     <div id="content">
         <h1><?=$titleText ?></h1>
+
+        <?=isset($success)?"<p>$success</p>":""?>
+        <?=isset($error)?"<p>$error</p>":""?>
         <?=$content?>
     </div>
     
