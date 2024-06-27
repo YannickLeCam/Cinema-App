@@ -50,6 +50,27 @@ class RoleManager{
         return $requestActor->fetchAll();
     }
 
+    public function insertRole(array $data):bool{
+        try {
+            $request = $this->pdo->prepare("
+                INSERT INTO role
+                (name)
+                VALUES(
+                :name
+                );
+            ");
+            $request->bindParam(':name',$data['name']);
+            if ($request->execute()) {
+                return true;
+            }else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            $_SESSION["error"]=$e->getMessage();
+            return false;
+        }
+
+    }
 
 }
 

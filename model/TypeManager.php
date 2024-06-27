@@ -62,7 +62,7 @@ class TypeManager{
                     return false;
                 }
             } catch (\Exception $e) {
-                $_SESSION["message"]=$e;
+                $_SESSION["error"]=$e;
                 return false;
             }
 

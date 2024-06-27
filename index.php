@@ -64,6 +64,9 @@ if (isset($_GET["action"])) {
         case 'createType':
             $ctrlType->newType();
             break;
+        case 'createRole':
+            $ctrlRole->newRole();
+            break;
         default:
             $ctrlHome->index();
             break;

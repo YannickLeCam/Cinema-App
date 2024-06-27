@@ -28,4 +28,35 @@ class RoleController {
         require "view/detailRole.php";
     }
 
+    public function newRole(){
+        $roleManager = new RoleManager();
+        if (isset($_POST["SubmitRoleForm"])) {
+            $data=[];
+            
+            $name = filter_input(INPUT_POST,"name", FILTER_SANITIZE_SPECIAL_CHARS);
+            
+
+            $listRoles = $roleManager->getRoles();
+            foreach ($listRoles as $role) {
+                if (in_array($name , $role)) {
+                    $_SESSION["error"]="$name semble deja avoir été créé . . .";
+                    header("Location:./index.php?action=createRole"); // redirect to type form
+                }
+            }
+
+            $data['name']=$name;
+
+            if($roleManager->insertRole($data)){
+                $_SESSION["success"]="Le role $name a bien été créé !";
+            }else {
+                if(!isset($_SESSION['error'])){
+                    $_SESSION["error"]="L'ajout du role $name a échoué . . .";
+                }
+                $_SESSION["roleData"] = $data;
+            }
+            header("Location:./index.php?action=createRole"); // redirect to type form
+        }
+        
+        require "view/createRole.php";
+    }
 }
