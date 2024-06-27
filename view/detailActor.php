@@ -1,13 +1,10 @@
 <?php ob_start();
-
-$dataActor = $requestActor->fetch();
-$dataRole = $requestRole->fetchAll();
 ?>
 
 
 
 <pre>
-    <?=var_dump($dataActor,$dataRole)?>
+    <?=var_dump($actor,$filmography)?>
 </pre>
 
 

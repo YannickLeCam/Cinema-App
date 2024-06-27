@@ -1,13 +1,10 @@
 <?php ob_start();
-
-$dataMovie = $requestMovie->fetch();
-$dataCasting = $requestCasting->fetchAll();
 ?>
 
 
 
 <pre>
-    <?=var_dump($dataMovie,$dataCasting)?>
+    <?=var_dump($movie,$listCasting,$listTypes,$director)?>
 </pre>
 
 

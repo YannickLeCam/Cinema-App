@@ -1,12 +1,11 @@
 <?php ob_start();
 
-$data = $request->fetchAll();
 ?>
 
 
 
 <pre>
-    <?=var_dump($data)?>
+    <?=var_dump($listMovies)?>
 </pre>
 
 
