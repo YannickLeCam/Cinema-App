@@ -53,16 +53,19 @@ class MovieController {
             $data['synopsis'] = filter_input(INPUT_POST,'synopsis',FILTER_SANITIZE_SPECIAL_CHARS);
             $data['rate'] = filter_input(INPUT_POST , 'rate' , FILTER_VALIDATE_FLOAT);
             $data['id_director'] = filter_input(INPUT_POST,'id_director',FILTER_VALIDATE_INT);
-            $args = [
-                'filter' => FILTER_VALIDATE_INT,
-                'flags' => FILTER_FORCE_ARRAY
-            ];
-            $data["types"]=filter_var_array($_POST['type'], $args);
-            if (filter_input(INPUT_POST,'posterURl',FILTER_VALIDATE_URL)) {
+            
+            if (isset($_POST['type']) && is_array($_POST['type'])) {
+                $data["types"] = filter_var($_POST['type'], FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY);
+            } else {
+                $data["types"] = [];
+            }
+
+            if (filter_input(INPUT_POST,'posterURL',FILTER_VALIDATE_URL)) {
                 $data['poster'] = filter_input(INPUT_POST,'posterURL',FILTER_SANITIZE_URL);
             }else {
                 $data["poster"] = "";
             }
+
 
             if ($data['name']=="") {
                 $this->errorCreate("Il semble manquer le titre du film . . ." ,$data);
@@ -89,18 +92,19 @@ class MovieController {
                 $this->errorCreate("Il semblerait y avoir une erreure sur la selection du réalisateur . . .",$data);
             }
             $typeChecked = false;
-            foreach($data['type'] as $typeSelected){
+            foreach($data['types'] as $typeSelected){
                 foreach ($listTypes as $type) {
                     if (in_array($typeSelected,$type)) {
                         $typeChecked=true;
                     }
                 }
                 if (!$typeChecked) {
+                    die;
                     $this->errorCreate("Il semblerait y avoir une erreure sur le genre du film",$data);
                 }
                 $typeChecked=false;
             }
-
+            
             if($movieManager->insertMovie($data)){
                 $_SESSION["success"]="Le film a bien été ajouté !";
                 header('Location:./index.php?action=createMovie');

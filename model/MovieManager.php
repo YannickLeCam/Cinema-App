@@ -80,9 +80,8 @@ class MovieManager{
 
     public function insertMovie($data){
         /**
-         * V1 without relation without casting
+         * V1 without casting's relations 
          */
-
         try {
             if (!empty($data)) {
                 $request= $this->pdo->prepare("
@@ -111,6 +110,22 @@ class MovieManager{
                 $request->bindParam(':rate',$data['rate']);
                 $request->bindParam(':id_director',$data['id_director']);
                 if ($request->execute()) {
+                    $idNewMovie=$this->pdo->lastInsertId();
+                    $requestTypeLink = $this->pdo->prepare("
+                        INSERT INTO be(
+                        id_movie,
+                        id_type)
+                        VALUES (
+                        :id_movie,
+                        :id_type);
+                    ");
+                    foreach ($data["types"] as $id_type) {
+                        $requestTypeLink->bindParam(':id_movie',$idNewMovie);
+                        $requestTypeLink->bindParam(':id_type',$id_type);
+                        if(!$requestTypeLink->execute()){
+                            throw new \Exception("L'insertion du genre semble avoir échoué . . .");
+                        }
+                    }
                     return true;
                 }else {
                     throw new \Exception("L'insertion du film semble avoir échoué . . .");
