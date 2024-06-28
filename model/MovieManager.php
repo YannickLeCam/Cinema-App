@@ -78,4 +78,51 @@ class MovieManager{
         return $request->fetch();
     }
 
+    public function insertMovie($data){
+        /**
+         * V1 without relation without casting
+         */
+
+        try {
+            if (!empty($data)) {
+                $request= $this->pdo->prepare("
+                    INSERT INTO movie (
+                    name,
+                    date_release,
+                    duration,
+                    synopsis,
+                    poster,
+                    rate,
+                    id_director)
+                    VALUES (
+                    :name,
+                    :date_release,
+                    :duration,
+                    :synopsis,
+                    :poster,
+                    :rate,
+                    :id_director);
+                ");
+                $request->bindParam(':name',$data['name']);
+                $request->bindParam(':date_release',$data['date_release']);
+                $request->bindParam(':duration',$data['duration']);
+                $request->bindParam(':synopsis',$data['synopsis']);
+                $request->bindParam(':poster',$data['poster']);
+                $request->bindParam(':rate',$data['rate']);
+                $request->bindParam(':id_director',$data['id_director']);
+                if ($request->execute()) {
+                    return true;
+                }else {
+                    throw new \Exception("L'insertion du film semble avoir échoué . . .");
+                }
+            }else {
+                throw new \Exception("Les données semble etre vide . . .");
+            }
+        } catch (\Exception $e) {
+            $_SESSION["error"]=$e->getMessage();
+            return false;
+        }
+
+    }
+
 }
