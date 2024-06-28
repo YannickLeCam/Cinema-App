@@ -74,6 +74,8 @@ if (isset($_GET["action"])) {
             break;
         case 'createMovie':
             $ctrlMovie->newMovie();
+        case 'createCasting':
+            $ctrlMovie->createCasting();
         default:
             $ctrlHome->index();
             break;

@@ -2,8 +2,10 @@
 
 namespace Controller;
 
+use Model\ActorManager;
 use Model\DirectorManager;
 use Model\MovieManager;
+use Model\RoleManager;
 use Model\TypeManager;
 
 class MovieController {
@@ -119,6 +121,88 @@ class MovieController {
         require 'view/createMovie.php';
     }
 
+    public function createCasting(){
+        $movieManager=new MovieManager();
+        $listMovies = $movieManager->getMovies();
+        $roleManager=new RoleManager();
+        $listRoles = $roleManager->getRoles();
+        $actorManager = new ActorManager();
+        $listActors = $actorManager->getActors();
+
+        if (isset($_POST['SubmitCastingForm'])) {
+            $data['role'] = filter_input(INPUT_POST,'role',FILTER_VALIDATE_INT);
+            $data['movie'] = filter_input(INPUT_POST,'movie',FILTER_VALIDATE_INT);
+            $data['actor'] = filter_input(INPUT_POST,'actor',FILTER_VALIDATE_INT);
+            
+            if (!$this->isInside($data['role'],$listRoles)) {
+                $_SESSION["error"]="Il semble avoir un probleme avec la selection du role";
+                $_SESSION["movieData"]=$data;
+                header('Location:./index.php?action=createCasting');
+                die;
+            }
+            if (!$this->isInside($data['movie'],$listMovies)) {
+                $_SESSION["error"]="Il semble avoir un probleme avec la selection du film";
+                $_SESSION["movieData"]=$data;
+                header('Location:./index.php?action=createCasting');
+                die;           
+            }
+            if (!$this->isInside($data['actor'],$listActors)) {
+                $_SESSION["error"]="Il semble avoir un probleme avec la selection de l'acteur";
+                $_SESSION["movieData"]=$data;
+                header('Location:./index.php?action=createCasting');
+                die;
+            }
+
+            if($movieManager->insertLinkCasting($data)){
+                $_SESSION["success"]="Lien a bien été créer";
+                header('Location:./index.php?action=createCasting');
+                die;
+            }else {
+                $_SESSION["error"]="Il semble avoir un probleme avec la selection de l'acteur";
+                $_SESSION["movieData"]=$data;
+                header('Location:./index.php?action=createCasting');
+                die;
+            }
+        }
+
+        require 'view/createCasting.php';
+    }
+
+   /**
+    * The function `isInside` checks if a given `` is present inside any sub-array of a
+    * multidimensional array ``.
+    * 
+    * Args:
+    *   id: The `id` parameter is the value that you are checking for inside the list. It is the value
+    * that you want to determine if it exists within the elements of the list.
+    *   list: The `` parameter in the `isInside` function is expected to be an array containing
+    * elements that can be checked for the presence of a specific `` value. Each element in the
+    * `` array is checked to see if it contains the `` value using the `in_array
+    * 
+    * Returns:
+    *   The function `isInside` is returning a boolean value - `true` if the `` is found inside any
+    * of the subarrays in the ``, and `false` if it is not found in any of the subarrays.
+    */
+    private function isInside($id,$list):bool{
+        foreach ($list as $value) {
+            if (in_array($id,$value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+/**
+ * The errorCreate function sets error message and movie data in session, then redirects to createMovie
+ * action in index.php.
+ * 
+ * Args:
+ *   message (string): The `message` parameter in the `errorCreate` function is a string that
+ * represents the error message or description that will be stored in the session variable
+ * `["error"]`.
+ *   data (array): The `errorCreate` function takes two parameters:
+ */
     private function errorCreate(string $message , array $data):void {
         $_SESSION["error"]=$message;
         $_SESSION["movieData"]=$data;
