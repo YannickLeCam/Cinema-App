@@ -1,8 +1,8 @@
 <?php
 ob_start();
-if (isset($_SESSION['directorData'])) {
-    $data = $_SESSION['directorData'];
-    unset($_SESSION['directorData']);
+if (isset($_SESSION['actorData'])) {
+    $data = $_SESSION['actorData'];
+    unset($_SESSION['actorData']);
 }
 ?>
 
@@ -19,14 +19,14 @@ if (isset($_SESSION['directorData'])) {
         <option value="Female" <?=(isset($data['genre'])? ($data['genre']=='Female'?"selected":"" ):"" )?>>Female</option>
         <option value="Other" <?=(isset($data['genre'])? ($data['genre']=='Other'?"selected":"" ):"" )?>>Other</option>
     </select>
-    <input type="submit" name="SubmitDirectorForm" value="Ajouter">
+    <input type="submit" name="SubmitActorForm" value="Ajouter">
 </form>
 
 
 
 <?php
-$title = "Nouveau Réalisateur";
-$titleText = "Nouveau Réalisateur";
+$title = "Nouveau Acteur";
+$titleText = "Nouveau Acteur";
 $content = ob_get_clean();
 require_once "view/template.php";
 ?>

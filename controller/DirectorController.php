@@ -31,12 +31,11 @@ class DirectorController {
             $name = filter_input(INPUT_POST,'name',FILTER_SANITIZE_SPECIAL_CHARS);
             $genre = filter_input(INPUT_POST,'genre',FILTER_SANITIZE_SPECIAL_CHARS);
             //GPT
-            $birthday = filter_input(INPUT_GET, 'date', FILTER_VALIDATE_REGEXP, array(
-                "options" => array("regexp" => "/^\d{4}-\d{2}-\d{2}$/")));
-            
+            $birthday = filter_input(INPUT_POST, 'birthday', FILTER_VALIDATE_REGEXP, array(
+                "options" => array("regexp" => '/^\d{4}-\d{2}-\d{2}$/')));
             $data['firstname']=$firstname;
             $data['name']=$name;
-            $data['birthday']=new DateTime($birthday);
+            $data['birthday']=$birthday;
             $data['genre']=$genre;
 
             if ($firstname!="" && $name != "" && $genre != "" && $birthday=!"") {
@@ -49,7 +48,7 @@ class DirectorController {
                 $_SESSION["error"]="Il semble manquer un atribut . . .";
                 $_SESSION['dataDirector']=$data;
                 header("Location:./index.php?createDirector");
-                die;
+                die();
             }
         }
 
