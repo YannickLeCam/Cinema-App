@@ -34,5 +34,38 @@ class ActorController {
         require "view/detailActor.php";
     }
 
+    public function newActor(){
+        $directorManager = new ActorManager();
+        if (isset($_POST['SubmitActorForm'])) {
+            $data=[];
+
+            $firstname = filter_input(INPUT_POST,'firstname',FILTER_SANITIZE_SPECIAL_CHARS);
+            $name = filter_input(INPUT_POST,'name',FILTER_SANITIZE_SPECIAL_CHARS);
+            $genre = filter_input(INPUT_POST,'genre',FILTER_SANITIZE_SPECIAL_CHARS);
+            //GPT
+            $birthday = filter_input(INPUT_POST, 'birthday', FILTER_VALIDATE_REGEXP, array(
+                "options" => array("regexp" => '/^\d{4}-\d{2}-\d{2}$/')));
+            $data['firstname']=$firstname;
+            $data['name']=$name;
+            $data['birthday']=$birthday;
+            $data['genre']=$genre;
+
+            if ($firstname!="" && $name != "" && $genre != "" && $birthday=!"") {
+                if ($directorManager->insertActor($data)) {
+                    $_SESSION['success']="L'Acteur $name $firstname a bien été enregistré";
+                }else {
+                    
+                }
+            }else {
+                $_SESSION["error"]="Il semble manquer un atribut . . .";
+                $_SESSION['dataActor']=$data;
+                header("Location:./index.php?createActor");
+                die();
+            }
+        }
+
+        require 'view/createActor.php';
+    }
+
 
 }

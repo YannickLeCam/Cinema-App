@@ -49,5 +49,50 @@ class ActorManager{
         return $request->fetchAll();
     }
 
+    public function insertActor($data):bool{
+        try {
+            if (!empty($data)) {
+                $request = $this->pdo->prepare("
+                    INSERT INTO person (
+                    firstname,
+                    name,
+                    birthday,
+                    genre)
+                    VALUES(
+                    :firstname,
+                    :name,
+                    :birthday,
+                    :genre)
+                ");
+                $request->bindParam(':firstname',$data['firstname']);
+                $request->bindParam(':name',$data['name']);
+                $request->bindParam(':birthday',$data['birthday']);
+                $request->bindParam('genre',$data['genre']);
+                
+                if ($request->execute()) {
+                    $idPerson = $this->pdo->lastInsertId();
+                    $requestActorInsert = $this->pdo->prepare("
+                        INSERT INTO actor(
+                        id_person)
+                        VALUES(
+                        :id_person);
+                    ");
+                    $requestActorInsert->bindParam(':id_person',$idPerson);
+                    if ($requestActorInsert->execute()) {
+                        return true;
+                    }else {
+                        throw new \Exception("Erreur lors de l'insertion des données dans la table 'actor'");
+                    }
+                }else {
+                    throw new \Exception("Erreur lors de l'insertion des données dans la table 'person'");
+                }
+            }else{
+                throw new \Exception("Les données semble etre vide . . .");
+            }
+        } catch (\Exception $e) {
+            $_SESSION['error']=$e;
+            return false;
+        }
+    }
 
 }

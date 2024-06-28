@@ -1,5 +1,6 @@
 <?php
 ob_start();
+var_dump($_SESSION);
 if (isset($_SESSION['actorData'])) {
     $data = $_SESSION['actorData'];
     unset($_SESSION['actorData']);

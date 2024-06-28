@@ -69,6 +69,9 @@ if (isset($_GET["action"])) {
         case 'createDirector':
             $ctrlDirector->newDirector();
             break;
+        case 'createActor':
+            $ctrlActor->newActor();
+            break;
         default:
             $ctrlHome->index();
             break;
