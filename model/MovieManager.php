@@ -139,5 +139,32 @@ class MovieManager{
         }
 
     }
+    
+    public function insertLinkCasting(int $id_role, int $id_movie , int $id_actor):bool{
+        try {
+            $request = $this->pdo->prepare("
+                INSERT INTO casting(
+                id_role,
+                id_movie,
+                id_role
+                )VALUES(
+                :id_role,
+                :id_movie,
+                :id_role
+                );
+            ");
+            $request->bindParam(':id_role',$id_role);
+            $request->bindParam(':id_movie',$id_movie);
+            $request->bindParam(':id_actor',$id_actor);
+            if ($request->execute()) {
+                return true;
+            }else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            $_SESSION["error"]=$e->getMessage();
+            return false;
+        }
+    }
 
 }
