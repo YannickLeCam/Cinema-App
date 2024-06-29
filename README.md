@@ -2,6 +2,8 @@
 
 Bienvenue sur **Cinema-App**, une application de gestion de films permettant aux utilisateurs de découvrir des films, d'obtenir des informations sur les réalisateurs, et bien plus encore !
 
+Ce projet m'a été proposer par Elan Formation afin d'amélioré mes compétences en PHP en appliquant une structure de MVC, idéale pour les travaux de groupe et l'univers professionnel.
+
 ## Fonctionnalités
 
 - **Affichage des films** : Consultez la liste complète des films disponibles.
