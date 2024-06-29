@@ -11,6 +11,13 @@ class RoleManager{
         $this->pdo = Connect::seConnecter();
     }
 
+/**
+ * This PHP function retrieves all roles from a database table named "role" and returns them as an
+ * array.
+ * 
+ * Returns:
+ *   An array of all roles from the "role" table in the database is being returned.
+ */
     public function getRoles():array{
         $request = $this->pdo->query("
             SELECT *
@@ -20,6 +27,19 @@ class RoleManager{
         return $request->fetchAll();
     }
 
+/**
+ * The function `getRoleDetail` retrieves the name of a role based on its ID from the database.
+ * 
+ * Args:
+ *   id (int): The `getRoleDetail` function takes an integer parameter `` which represents the id of
+ * the role for which you want to retrieve details. The function then prepares and executes a SQL query
+ * to fetch the name of the role from the database based on the provided id. Finally, it returns an
+ * array
+ * 
+ * Returns:
+ *   The `getRoleDetail` function is returning an associative array with the role name for the given
+ * `id`.
+ */
     public function getRoleDetail(int $id):array{
         $requestRole = $this->pdo -> prepare ("
             SELECT name
@@ -31,6 +51,19 @@ class RoleManager{
         return $requestRole->fetch();
     }
 
+/**
+ * The function retrieves information about an actor's role in a movie based on the role ID.
+ * 
+ * Args:
+ *   id (int): The `getActorMovieOfRole` function takes an integer parameter ``, which represents
+ * the ID of a specific role. The function then retrieves information about the actor and movie
+ * associated with that role from the database tables `role`, `casting`, `actor`, `person`, and
+ * `movie`.
+ * 
+ * Returns:
+ *   This function is returning an array of data that includes the name, firstname, genre of the actor,
+ * and the name of the movie they are associated with based on the role ID provided as a parameter.
+ */
     public function getActorMovieOfRole(int $id):array{
         $requestActor = $this->pdo -> prepare ("
             SELECT person.name, person.firstname, person.genre, movie.name
@@ -50,6 +83,19 @@ class RoleManager{
         return $requestActor->fetchAll();
     }
 
+/**
+ * The function `insertRole` inserts a new role into a database table named `role` using data provided
+ * in an associative array.
+ * 
+ * Args:
+ *   data (array): The `insertRole` function is designed to insert a new role into a database table
+ * named `role`. The function takes an array `` as a parameter, which is expected to contain the
+ * data needed to insert a new role.
+ * 
+ * Returns:
+ *   The `insertRole` function returns a boolean value. It returns `true` if the role insertion is
+ * successful, and `false` if there is an error during the insertion process.
+ */
     public function insertRole(array $data):bool{
         try {
             $request = $this->pdo->prepare("

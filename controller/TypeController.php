@@ -5,6 +5,11 @@ namespace Controller;
 use Model\TypeManager;
 
 class TypeController {
+
+/**
+ * The listTypes function retrieves a list of types using TypeManager and then includes a view file to
+ * display the list.
+ */
     public function listTypes(){
         $typeManager = new TypeManager();
         $listTypes = $typeManager->getTypes();
@@ -12,6 +17,16 @@ class TypeController {
         require "view/listTypes.php";
     }
 
+/**
+ * The function `detailType` retrieves details and a list of movies for a specific type using a
+ * TypeManager object and then loads a view file to display the information.
+ * 
+ * Args:
+ *   id (int): The `detailType` function takes an integer parameter `` which represents the
+ * identifier of a specific type. This function retrieves the details of the type with the given ``
+ * using the `getTypeDetail` method of the `TypeManager` class. It also fetches a list of movies
+ * associated
+ */
     public function detailType(int $id){
         $typeManager = new TypeManager();
         $type = $typeManager->getTypeDetail($id);
@@ -22,6 +37,11 @@ class TypeController {
 
 
     
+/**
+ * This PHP function creates a new type by processing form data, checking for existing types, inserting
+ * the new type into the database, and redirecting to the type creation form with success or error
+ * messages.
+ */
     public function newType(){
         $typeManager = new TypeManager();
         if (isset($_POST["SubmitTypeForm"])) {

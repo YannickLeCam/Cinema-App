@@ -12,6 +12,15 @@ class DirectorManager{
         $this->pdo = Connect::seConnecter();
     }
 
+/**
+ * This PHP function retrieves a list of directors along with their information from a database.
+ * 
+ * Returns:
+ *   The `getDirectors` function is returning an array of all directors from the database. The query
+ * selects all columns from the `person` table and the `id_director` column from the `director` table
+ * where the `id_person` matches between the two tables. The function then executes the query and
+ * returns all the fetched rows as an array.
+ */
     public function getDirectors():array{
         $request = $this->pdo->query("
             SELECT person.* , id_director
@@ -22,6 +31,18 @@ class DirectorManager{
         return $request->fetchAll();
     }
 
+/**
+ * The function `getDirectorDetail` retrieves details of a director based on their ID from a database.
+ * 
+ * Args:
+ *   id (int): The `getDirectorDetail` function takes an integer parameter `` which represents the
+ * unique identifier of a director. The function retrieves details of the director such as their name,
+ * first name, birthday, genre, and director ID from the database based on the provided ``.
+ * 
+ * Returns:
+ *   The `getDirectorDetail` function is returning a single row of data from the database that includes
+ * the name, firstname, birthday, genre, and id_director of a director based on the provided ``.
+ */
     public function getDirectorDetail(int $id){
         $request = $this->pdo->prepare("
             SELECT person.name, person.firstname , person.birthday , person.genre , id_director
@@ -33,6 +54,18 @@ class DirectorManager{
         return $request->fetch();
     }
 
+/**
+ * This PHP function retrieves all movies directed by a specific director based on their ID.
+ * 
+ * Args:
+ *   id (int): The `id` parameter in the `getMovieOfDirector` function is an integer that represents
+ * the unique identifier of a director. This function retrieves all movies associated with the director
+ * whose ID matches the provided `id` parameter.
+ * 
+ * Returns:
+ *   The `getMovieOfDirector` function is returning an array of all movies that have a director with
+ * the specified ID.
+ */
     public function getMovieOfDirector(int $id){
         $request = $this->pdo->prepare("
             SELECT *
@@ -44,6 +77,20 @@ class DirectorManager{
         return $request->fetchAll();
     }
 
+/**
+ * The function `insertDirector` inserts a new director into the database along with their personal
+ * information.
+ * 
+ * Args:
+ *   data: It looks like the code you provided is a PHP function that inserts a director into a
+ * database. The function takes an array `` as a parameter, which should contain the following
+ * keys: 'firstname', 'name', 'birthday', and 'genre'.
+ * 
+ * Returns:
+ *   This `insertDirector` function returns a boolean value. It returns `true` if the data insertion
+ * into the `person` and `director` tables is successful, and it returns `false` if an exception is
+ * caught during the process.
+ */
     public function insertDirector($data):bool{
         try {
             if (!empty($data)) {

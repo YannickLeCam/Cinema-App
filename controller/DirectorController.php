@@ -7,6 +7,9 @@ use Model\DirectorManager;
 
 class DirectorController {
 
+/**
+ * The `listDirectors` function retrieves a list of directors and displays them using a view template.
+ */
     public function listDirectors(){
         $directorManager = new DirectorManager();
         $directors = $directorManager->getDirectors();
@@ -14,6 +17,16 @@ class DirectorController {
         require 'view/listDirector.php';
     }
 
+/**
+ * The function `detailDirector` retrieves details of a director and their associated movies for
+ * display in a view.
+ * 
+ * Args:
+ *   id (int): The `detailDirector` function takes an integer parameter `` which represents the
+ * unique identifier of a director. This function retrieves the details of the director with the
+ * specified ID using the `DirectorManager` class. It then fetches a list of movies associated with
+ * that director before rendering the details in the
+ */
     public function detailDirector(int $id){
         $directorManager = new DirectorManager();
         $director = $directorManager->getDirectorDetail($id);
@@ -22,6 +35,10 @@ class DirectorController {
         require 'view/detailDirector.php';
     }
 
+/**
+ * The `newDirector` function in PHP creates a new director by processing form data, validating input,
+ * and inserting the director into the database, handling success and error messages accordingly.
+ */
     public function newDirector(){
         $directorManager = new DirectorManager();
         if (isset($_POST['SubmitDirectorForm'])) {

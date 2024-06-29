@@ -6,6 +6,10 @@ use Model\RoleManager;
 
 class RoleController {
 
+/**
+ * The listRole function retrieves a list of roles using RoleManager and then displays them using a
+ * view file.
+ */
     public function listRole(){
         $roleManager = new RoleManager();
         $listRoles=$roleManager->getRoles();
@@ -28,6 +32,10 @@ class RoleController {
         require "view/detailRole.php";
     }
 
+    /**
+     * This PHP function creates a new role by processing form data, checking for existing roles,
+     * inserting the new role into the database, and handling success or error messages.
+     */
     public function newRole(){
         $roleManager = new RoleManager();
         if (isset($_POST["SubmitRoleForm"])) {
