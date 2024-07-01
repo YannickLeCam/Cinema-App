@@ -16,8 +16,14 @@ class MovieController {
  */
     public function listMovies(){
         $movieManager = new MovieManager();
-        $listMovies = $movieManager->getMovies();
-
+        if (isset($_POST['SubmitSearchButton'])) {
+            $content = filter_input(INPUT_POST,'titleContain',FILTER_SANITIZE_SPECIAL_CHARS);
+            $listMovies = $movieManager->getMoviesSearch($content);
+        }else {
+            $listMovies = $movieManager->getMovies();
+        }
+        
+  
         require "view/listMovies.php";
     }
 

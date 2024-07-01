@@ -19,6 +19,12 @@ echo $navService->navList();
 
 
 <div id="listCard">
+    <div id="research">
+        <form action="./index.php?action=listMovies" method="post">
+            <input type="text" name="titleContain" id="">
+            <input type="submit" name="SubmitSearchButton" value="Rechercher">
+        </form>
+    </div>
     <?=createCardsMovies($listMovies)?>
 </div>
 
