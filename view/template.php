@@ -22,7 +22,19 @@ if (isset($_SESSION["success"])) {
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
+    <header>
+        <div id="logo">
+            <p>Cin<span>Almanach</span></p>
+        </div>
+        <nav>
+            <ul>
+                <li class="linkNav"><a href="./index.php">Accueil</a></li>
+                <a href="./index.php?action=listMovies"><li>Catalogue</li></a>
+                <a href="./index.php?action=createMovie"><li>Insertion</li></a>
+            </ul>
+        </nav>
 
+    </header>
     <div id="content">
         <h1><?=$titleText ?></h1>
 

@@ -6,7 +6,6 @@
 
 
 
-
 <?php
 $title = "Cinema";
 $titleText = "Index";

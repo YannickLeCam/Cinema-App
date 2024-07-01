@@ -1,0 +1,75 @@
+/**
+POlice : Bungee-regular
+*/
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+
+header{
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    background-color: rgba(49, 49, 49,0.85);
+    color: lightgray;
+}
+
+header #logo {
+    position: absolute;
+    left: 3%;
+}
+
+header nav{
+    justify-self: center;
+}
+
+header nav ul{
+    display: flex;
+    gap : 10%;
+}
+
+header nav li{
+    list-style: none;
+    position: relative;
+}
+
+header a {
+    text-decoration: none;
+}
+header a:hover{
+    color: white;
+    transition: 0.2s;
+}
+header li::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: lightgray;
+    transform-origin: bottom right;
+    transition: transform 0.5s ease-out;
+}
+header li:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+header a:visited , header a:checked {
+    color: lightgray;
+}
+
+
+#content{
+    margin-top: 8vh;
+}
