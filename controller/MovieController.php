@@ -38,6 +38,10 @@ class MovieController {
         require "view/detailMovie.php";
     }
 
+    /**
+     * The function `newMovie` handles the creation of a new movie by validating and processing form
+     * data before inserting it into the database.
+     */
     public function newMovie(){
         $directorManager= new DirectorManager();
         $typeManager = new TypeManager();
@@ -121,6 +125,10 @@ class MovieController {
         require 'view/createMovie.php';
     }
 
+/**
+ * The function `createCasting` in PHP handles the creation of a casting link by validating and
+ * processing form data, checking for errors, and redirecting accordingly.
+ */
     public function createCasting(){
         $movieManager=new MovieManager();
         $listMovies = $movieManager->getMovies();

@@ -11,6 +11,12 @@ class ActorManager{
         $this->pdo = Connect::seConnecter();
     }
 
+/**
+ * This PHP function retrieves all actors along with their details from a database.
+ * 
+ * Returns:
+ *   An array of actors with their information, including the actor's ID.
+ */
     public function getActors():array{
         $request = $this->pdo->query("
             SELECT person.* , id_actor
@@ -21,6 +27,18 @@ class ActorManager{
         return $request->fetchAll();
     }
 
+/**
+ * This PHP function retrieves details of an actor based on their ID from a database.
+ * 
+ * Args:
+ *   id (int): The `getActorDetail` function takes an integer parameter `` which represents the
+ * unique identifier of an actor. This function retrieves details of the actor such as their name,
+ * first name, birthday, and genre from the database based on the provided actor ID.
+ * 
+ * Returns:
+ *   An array containing the details (name, firstname, birthday, genre) of the actor with the specified
+ * ID is being returned.
+ */
     public function getActorDetail(int $id):array{
         $requestActor = $this->pdo->prepare("
             SELECT person.name, person.firstname , person.birthday , person.genre
@@ -32,6 +50,20 @@ class ActorManager{
         return $requestActor->fetch();
     }
 
+/**
+ * The function retrieves the roles and corresponding movies of a specific actor from a database using
+ * PHP and PDO.
+ * 
+ * Args:
+ *   id (int): The `getRoleMovieOfActor` function takes an integer parameter `` which represents the
+ * unique identifier of an actor. This function retrieves the roles and movies associated with the
+ * actor identified by the provided ``. The SQL query fetches the role names and movie names by
+ * joining the `actor`,
+ * 
+ * Returns:
+ *   An array containing the names of roles and movies associated with the actor identified by the
+ * provided ID.
+ */
     public function getRoleMovieOfActor(int $id):array {
         $request = $this->pdo->prepare("
             SELECT role.name, movie.name
@@ -49,6 +81,20 @@ class ActorManager{
         return $request->fetchAll();
     }
 
+/**
+ * The function `insertActor` inserts actor data into the database tables `person` and `actor` and
+ * returns a boolean value based on the success of the operation.
+ * 
+ * Args:
+ *   data: The `insertActor` function you provided is responsible for inserting data into the `person`
+ * and `actor` tables in a database. It first checks if the `` array is not empty, prepares and
+ * executes an SQL query to insert data into the `person` table, retrieves the last inserted
+ * 
+ * Returns:
+ *   This `insertActor` function returns a boolean value. It returns `true` if the data insertion into
+ * both the `person` and `actor` tables is successful. If there is an error during the insertion
+ * process, it returns `false` and sets the error message in the `['error']` variable.
+ */
     public function insertActor($data):bool{
         try {
             if (!empty($data)) {

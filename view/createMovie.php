@@ -5,6 +5,18 @@ if (isset($_SESSION['movieData'])) {
     unset($_SESSION['movieData']);
 }
 
+/**
+ * The function `createInputType` generates HTML checkboxes based on a list of types provided.
+ * 
+ * Args:
+ *   listTypes: An array containing information about different types. Each element in the array should
+ * have 'name' and 'id_type' keys to represent the type name and type ID respectively.
+ * 
+ * Returns:
+ *   The function `createInputType` returns a HTML content string that contains a series of checkboxes
+ * with labels based on the input list of types. Each checkbox corresponds to a type in the list, with
+ * the type name as the label and the type ID as the value.
+ */
 function createInputType($listTypes){
     $htmlContent = "<div id='typeCheckbox'>";
     foreach ($listTypes as $type) {
@@ -19,6 +31,20 @@ HTML;
     return $htmlContent;
 }
 
+/**
+ * The function `createSelectDirectors` generates a dropdown select menu with director names and IDs
+ * from a given list of directors.
+ * 
+ * Args:
+ *   listDirectors:  is an array containing information about directors. Each element in
+ * the array is an associative array with keys like 'name', 'firstname', and 'id_director' to store the
+ * respective details of a director.
+ * 
+ * Returns:
+ *   The function `createSelectDirectors` returns an HTML select element populated with options for
+ * each director in the provided list. Each option includes the director's full name and their
+ * corresponding ID.
+ */
 function createSelectDirectors($listDirectors){
     $htmlContent = "<select name='id_director' id='directorSelect'>";
     foreach ($listDirectors as $director) {

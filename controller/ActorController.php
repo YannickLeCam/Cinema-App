@@ -34,6 +34,10 @@ class ActorController {
         require "view/detailActor.php";
     }
 
+/**
+ * The `newActor` function in PHP creates a new actor by processing form data, validating input, and
+ * inserting the actor into a database, handling success and error messages accordingly.
+ */
     public function newActor(){
         $directorManager = new ActorManager();
         if (isset($_POST['SubmitActorForm'])) {

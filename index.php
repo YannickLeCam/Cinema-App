@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 use Controller\CinemaController;
 use Controller\MovieController;
 use Controller\ActorController;
