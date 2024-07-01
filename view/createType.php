@@ -4,6 +4,11 @@ if (isset($_SESSION['typeData'])) {
     $data = $_SESSION['typeData'];
     unset($_SESSION['typeData']);
 }
+
+use Service\NavService;
+$navService= new NavService();
+
+echo $navService->navCreate();
 ?>
 
 <form action="./index.php?action=createType" method="post">

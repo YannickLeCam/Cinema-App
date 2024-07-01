@@ -1,7 +1,9 @@
 <?php ob_start();
 
+use Service\NavService;
 
-require 'public/elements/navList.php';
+$navService=new NavService();
+echo $navService->navList();
 ?>
 
 

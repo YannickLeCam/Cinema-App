@@ -4,7 +4,10 @@ if (isset($_SESSION['movieData'])) {
     $data = $_SESSION['movieData'];
     unset($_SESSION['movieData']);
 }
+use Service\NavService;
+$navService= new NavService();
 
+echo $navService->navCreate();
 /**
  * The function `createInputType` generates HTML checkboxes based on a list of types provided.
  * 

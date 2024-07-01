@@ -99,6 +99,11 @@ HTML;
     $htmlContent .= "</select>";
     return $htmlContent;
 }
+
+use Service\NavService;
+$navService= new NavService();
+
+echo $navService->navCreate();
 ?>
 <form action="./index.php?action=createCasting" method="post">
     <label for="movie">Selectionner le film :</label>

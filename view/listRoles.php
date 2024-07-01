@@ -2,7 +2,10 @@
 
 
 
-require 'public/elements/navList.php';
+use Service\NavService;
+
+$navService=new NavService();
+echo $navService->navList();
 ?>
 
 

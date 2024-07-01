@@ -70,12 +70,13 @@ header a:visited , header a:checked {
     margin-top: 8vh;
 }
 
-#navList{
+#navList,#navCreate{
     display: flex;
     justify-content: center;
+    margin: 5%;
 }
 
-#navList ul{
+#navList ul,#navCreate ul{
     flex: 1;
     display: flex;
     justify-content: center;
@@ -83,11 +84,11 @@ header a:visited , header a:checked {
     gap: 7%;
 }
 
-#navList li{
+#navList li,#navCreate li{
     list-style: none;
     position: relative;
 }
-#navList li::after{
+#navList li::after,#navCreate li::after{
     content: '';
     position: absolute;
     width: 100%;
@@ -99,19 +100,19 @@ header a:visited , header a:checked {
     transform-origin: bottom right;
     transition: transform 0.5s ease-out;
 }
-#navList li:hover::after{
+#navList li:hover::after,#navCreate li:hover::after{
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-#navList a{
+#navList a,#navCreate a{
     text-decoration: none;
     color: rgb(49, 49, 49);
 }
-#navList a:visited , header a:checked {
+#navList a:visited , #navList a:checked ,#navCreate a:visited , #navCreate a:checked {
     color: rgb(49, 49, 49);
 }
 
-#navList .active::after{
+#navList .active::after,#navCreate .active::after{
     content: '';
     position: absolute;
     width: 100%;

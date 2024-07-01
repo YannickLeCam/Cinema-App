@@ -4,6 +4,10 @@ if (isset($_SESSION['directorData'])) {
     $data = $_SESSION['directorData'];
     unset($_SESSION['directorData']);
 }
+use Service\NavService;
+$navService= new NavService();
+
+echo $navService->navCreate();
 ?>
 
 <form action="./index.php?action=createDirector" method="post">
