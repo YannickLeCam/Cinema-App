@@ -14,7 +14,7 @@ class DirectorController {
         $directorManager = new DirectorManager();
         $directors = $directorManager->getDirectors();
         
-        require 'view/listDirector.php';
+        require 'view/listDirectors.php';
     }
 
 /**

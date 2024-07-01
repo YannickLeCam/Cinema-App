@@ -1,4 +1,8 @@
 <?php ob_start();
+
+
+
+require 'public/elements/navList.php';
 ?>
 
 

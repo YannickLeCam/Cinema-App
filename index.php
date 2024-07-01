@@ -34,7 +34,7 @@ if (isset($_GET["action"])) {
         case 'listActors': 
             $ctrlActor->listActors(); 
             break;
-        case 'listRole':
+        case 'listRoles':
             $ctrlRole->listRole();
             break;
         case 'detailMovie':
@@ -55,7 +55,7 @@ if (isset($_GET["action"])) {
         case 'detailType':
             $ctrlType->detailType($id);
             break;
-        case 'listDirector':
+        case 'listDirectors':
             $ctrlDirector->listDirectors();
             break;
         case 'detailDirector':

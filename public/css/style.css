@@ -44,16 +44,12 @@ header nav li{
 header a {
     text-decoration: none;
 }
-header a:hover{
-    color: white;
-    transition: 0.2s;
-}
 header li::after{
     content: '';
     position: absolute;
     width: 100%;
     transform: scaleX(0);
-    height: 2px;
+    height: 1px;
     bottom: 0;
     left: 0;
     background-color: lightgray;
@@ -73,3 +69,57 @@ header a:visited , header a:checked {
 #content{
     margin-top: 8vh;
 }
+
+#navList{
+    display: flex;
+    justify-content: center;
+}
+
+#navList ul{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7%;
+}
+
+#navList li{
+    list-style: none;
+    position: relative;
+}
+#navList li::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(49, 49, 49);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease-out;
+}
+#navList li:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+#navList a{
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+}
+#navList a:visited , header a:checked {
+    color: rgb(49, 49, 49);
+}
+
+#navList .active::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(1);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(49, 49, 49);
+    transform-origin: bottom right;
+}
+

@@ -1,10 +1,14 @@
 <?php ob_start();
+
+
+
+require 'public/elements/navList.php';
 ?>
 
 
 
 <pre>
-    <?=var_dump($listRole)?>
+    <?=var_dump($listRoles)?>
 </pre>
 
 

@@ -14,7 +14,7 @@ class RoleController {
         $roleManager = new RoleManager();
         $listRoles=$roleManager->getRoles();
 
-        require 'view/listRole.php';
+        require 'view/listRoles.php';
     }
 
     /**
