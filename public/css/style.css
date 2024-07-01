@@ -124,3 +124,71 @@ header a:visited , header a:checked {
     transform-origin: bottom right;
 }
 
+#listCard{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 3%;
+    max-width: 100vw;
+    padding: 3% 3%;
+    margin: 2%;
+    border-radius: 20px;
+    border: 5px rgb(49, 49, 49) solid;
+}
+
+#listCard a{
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: rgb(212, 212, 212);
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+    transition: 1s;
+}
+#listCard a:hover{
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+#listCard a:checked , #listCard a:visited{
+    color: rgb(49, 49, 49);
+}
+
+.cardHeader{
+    height: 80%;
+    overflow: hidden;
+}
+.card {
+    position: relative;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card h4{
+    display: flex;
+    flex:1;
+    align-items: center;
+    justify-content: center;
+}
+.card p{
+    position: absolute;
+    top:0%;
+    right: 0%;
+    background-color: rgba(212, 212, 212,0.80);
+    width: 18%;
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: rgb(49, 49, 49);
+}
+.card p:visited ,.card p:checked{
+    color: lightgray;
+}
+.card img {
+    object-fit: contain;
+    width: 100%;
+}
+
+
+
