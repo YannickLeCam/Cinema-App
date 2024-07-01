@@ -258,6 +258,17 @@ class MovieManager{
         }
     }
 
+/**
+ * The function `getMoviesSearch` retrieves movies from a database that match a given search content.
+ * 
+ * Args:
+ *   content (string): The `getMoviesSearch` function takes a string parameter named `$content`, which
+ * is used to search for movies in a database table named `movie`. The function prepares a SQL query to
+ * select all columns from the `movie` table where the `name` column is like the provided content
+ * 
+ * Returns:
+ *   An array of movies that match the search content provided.
+ */
     public function getMoviesSearch(string $content):array{
         $content = "%".$content."%";
         $request = $this->pdo->prepare("
