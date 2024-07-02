@@ -22,18 +22,17 @@ echo $navService->navCreate();
  */
 function createInputType($listTypes){
     $htmlContent = "<div id='typeCheckbox'>";
-    foreach ($listTypes as $type) {
+    foreach ($listTypes as $key=>$type) {
         $typeName = $type['name'];
         $typeId = $type['id_type'];
         $htmlContent .= <<<HTML
-        <input type="checkbox" value=$typeId name=type[] id="typeCheckBox">
-        <label for="typeCheckBox">$typeName</label>
+        <input type="checkbox" class="btn-check" value=$typeId name=type[] id="btn-check-$key" autocomplete="off">
+        <label class="btn" for="btn-check-$key">$typeName</label>
 HTML;
     }
     $htmlContent .= "</div>";
     return $htmlContent;
 }
-
 /**
  * The function `createSelectDirectors` generates a dropdown select menu with director names and IDs
  * from a given list of directors.
@@ -49,7 +48,7 @@ HTML;
  * corresponding ID.
  */
 function createSelectDirectors($listDirectors){
-    $htmlContent = "<select name='id_director' id='directorSelect'>";
+    $htmlContent = "<select name='id_director' id='directorSelect' class='form-select mb-3'>";
     foreach ($listDirectors as $director) {
         $directorName = $director['name'].' '.$director['firstname'];
         $directorId = $director['id_director'];
@@ -63,23 +62,43 @@ HTML;
 ?>
 
 <form action="./index.php?action=createMovie" method="post">
-    <label for="name">Entrer le tire du film :</label>
-    <input type="text" name="name" id="" value="<?=isset($data["name"])?htmlentities($data["name"]):""?>">
-    <label for="date_release">Date de sortie du film :</label>
-    <input type="date" id="date_release" name="date_release" value="<?=(isset($data['date_release']) ? $data['date_release'] :"")?>">
-    <label for="duration">Entrer la durée du film :</label>
-    <input type="number" name="duration" id="duration" min=0 value="<?=(isset($data['duration']) ? $data['duration'] :"")?>">
-    <label for="rate">Evaluer le film (sur 10) :</label>
-    <input type="text" name="rate" id="inputRate" value="<?=(isset($data['rate']) ? $data['rate'] :"")?>">
-    <label for="poster">Entrer l'affiche du film :</label>
-    <input type="url" name="posterURL" id="inputPoster" value="<?=(isset($data['posterURL']) ? $data['posterURL'] :"")?>">
+    <div class="form-floating mb-3">
+        <input type="text" name="name" id="floatingInput" class="form-control" value="<?=isset($data["name"])?htmlentities($data["name"]):""?>" placeholder="Entrer le titre du film :">
+        <label for="floatingInput">Entrer le tire du film :</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="date" id="floatingInput" name="date_release" class="form-control" value="<?=(isset($data['date_release']) ? $data['date_release'] :"")?>" placeholder="Date de sortie du film :">
+        <label for="floatingInput">Date de sortie du film :</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" name="duration" id="floatingInput" class="form-control" min=0 value="<?=(isset($data['duration']) ? $data['duration'] :"")?>" placeholder="Entrer la durée du film :">
+        <label for="floatingInput">Entrer la durée du film :</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" name="rate" id="floatingInput" class="form-control" value="<?=(isset($data['rate']) ? $data['rate'] :"")?>" placeholder="Evaluer le film (sur 10) :">
+        <label for="floatingInput">Evaluer le film (sur 10) :</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="url" name="posterURL" id="floatingInput" class="form-control" value="<?=(isset($data['posterURL']) ? $data['posterURL'] :"")?>" placeholder="Entrer l'affiche du film :">
+        <label for="floatingInput">Entrer l'affiche du film :</label>    
+    </div>
+
     <label for="type">Entrer le(s) genre(s) du film :</label>
     <?=createInputType($listTypes)?>
+
     <label for="director">Entrer le réalisateur :</label>
     <?=createSelectDirectors($listDirectors)?>
-    <label for="synopsis">Entrer le synopsis du film :</label>
-    <textarea name="synopsis" id="synopsis" value="<?=(isset($data['synopsis']) ? $data['synopsis'] :"")?>"></textarea>
-    <input type="submit" name="SubmitMovieForm" value="Ajouter">
+
+    <div class="form-floating">
+        <textarea name="synopsis" id="floatingTextarea2" class="form-control" placeholder="Entrer le synopsis du film :" value="<?=(isset($data['synopsis']) ? $data['synopsis'] :"")?>"></textarea>
+        <label for="floatingTextarea2">Entrer le synopsis du film :</label>
+    </div>
+ 
+    <input type="submit" name="SubmitMovieForm" class="btn btn-secondary" value="Ajouter">
 </form>
 
 
