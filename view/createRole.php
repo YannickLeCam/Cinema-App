@@ -12,9 +12,12 @@ echo $navService->navCreate();
 ?>
 
 <form action="./index.php?action=createRole" method="post">
-    <label for="name">Entrer le nom du Role :</label>
-    <input type="text" name="name" id="" value="<?=isset($data["name"])?htmlentities($data["name"]):""?>">
-    <input type="submit" name="SubmitRoleForm" value="Ajouter">
+    
+    <div class="form-floating mb-3">
+        <input type="text" name="name" id="floatingInput" class="form-control" value="<?=isset($data["name"])?htmlentities($data["name"]):""?>" placeholder="Entrer le nom du Role :">
+        <label for="floatingInput">Entrer le nom du Role :</label>
+    </div>
+    <input type="submit" name="SubmitRoleForm" class="btn btn-secondary" value="Ajouter">
 </form>
 
 
