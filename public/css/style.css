@@ -34,6 +34,7 @@ header nav{
 header nav ul{
     display: flex;
     gap : 10%;
+    margin:0;
 }
 
 header nav li{
@@ -83,6 +84,7 @@ header a:visited , header a:checked {
     justify-content: center;
     align-items: center;
     gap: 7%;
+    margin: 0;
 }
 
 #navList li,#navCreate li{
@@ -247,8 +249,17 @@ header a:visited , header a:checked {
     transition: 0.5s;
 }
 
-
-input:focus{
-    border: 5px rgba(49, 49, 49,0.6) solid;
-    box-shadow: 5px rgb(49, 49, 49);
+form{
+    padding: 2%;
 }
+.form-select:focus,.form-control:focus{
+    box-shadow: 7px 7px 7px rgb(212, 212, 212);
+    border-color :2px rgb(49, 49, 49) solid;
+}
+.form-sub-container {
+    display: grid;
+    grid-template-columns: repeat( 2,1fr);
+    grid-template-rows: 5% , 5%;
+    align-items: start;
+}
+
