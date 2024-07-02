@@ -22,11 +22,11 @@ if (isset($_SESSION['movieData'])) {
  * 'firstname' fields) as the display text and the actor's ID as the option value.
  */
 function createSelectActors($listActors){
-    $htmlContent = "<select name='actor' id='directorSelect'>";
+    $htmlContent = "<select name='actor' id='directorSelect' class='form-select form-select-lg mb-3' aria-label='Large select example'>";
     foreach ($listActors as $key => $actor) {
         $actorName = $actor['name'].' '.$actor['firstname'];
         $actorId = $actor['id_actor'];
-        if ($key=0) {
+        if ($key==0) {
             $complement="selected";
         }else {
             $complement="";
@@ -53,11 +53,11 @@ HTML;
  * movie's name as the option text.
  */
 function createSelectMovies($listMovies){
-    $htmlContent = "<select name='movie' id='directorSelect'>";
-    foreach ($listMovies as $movie) {
+    $htmlContent = "<select name='movie' id='directorSelect' class='form-select form-select-lg mb-3' aria-label='Large select example'>";
+    foreach ($listMovies as $key => $movie) {
         $movieName = $movie['name'];
         $movieId = $movie['id_movie'];
-        if ($key=0) {
+        if ($key==0) {
             $complement="selected";
         }else {
             $complement="";
@@ -83,11 +83,11 @@ HTML;
  * options generated from the provided array of roles.
  */
 function createSelectRoles(array $listRoles):string{
-    $htmlContent = "<select name='role' id='directorSelect'>";
-    foreach ($listRoles as $role) {
+    $htmlContent = "<select name='role' id='directorSelect' class='form-select form-select-lg mb-3' aria-label='Large select example'>";
+    foreach ($listRoles as $key=>$role) {
         $roleName = $role['name'];
         $roleId = $role['id_role'];
-        if ($key=0) {
+        if ($key==0) {
             $complement="selected";
         }else {
             $complement="";
@@ -112,7 +112,7 @@ echo $navService->navCreate();
     <?=createSelectRoles($listRoles)?>
     <label for="actor">Selectionner l'acteur :</label>
     <?=createSelectActors($listActors)?>
-    <input type="submit" name="SubmitCastingForm" value="Ajouter le lien">
+    <input type="submit" name="SubmitCastingForm" value="Ajouter le lien" class="btn btn-secondary">
 </form>
 
 <?php

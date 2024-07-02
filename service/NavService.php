@@ -48,6 +48,7 @@ HTML;
         <li><a href="./index.php?action=createRole" class="nav-link {$this->getActiveClass($action, 'createRole')}">Roles</a></li>
         <li><a href="./index.php?action=createDirector" class="nav-link {$this->getActiveClass($action, 'createDirector')}">Réalisateurs</a></li>
         <li><a href="./index.php?action=createType" class="nav-link {$this->getActiveClass($action, 'createType')}">Genre</a></li>
+        <li><a href="./index.php?action=createCasting" class="nav-link {$this->getActiveClass($action, 'createCasting')}">Casting</a></li>
     </ul>
 </nav>
 HTML;

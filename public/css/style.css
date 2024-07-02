@@ -246,3 +246,9 @@ header a:visited , header a:checked {
     background-color:rgb(212, 212, 212) ;
     transition: 0.5s;
 }
+
+
+input:focus{
+    border: 5px rgba(49, 49, 49,0.6) solid;
+    box-shadow: 5px rgb(49, 49, 49);
+}
