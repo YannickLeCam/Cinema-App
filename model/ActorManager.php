@@ -141,4 +141,16 @@ class ActorManager{
         }
     }
 
+    public function getActorsSearch(string $content):array{
+        $content = '%'.$content.'%';
+        $request = $this->pdo->prepare("
+            SELECT person.* , id_actor
+            FROM person,actor
+            Where person.id_person = actor.id_person AND person.name LIKE :content;
+        ");
+        $request->bindParam(':content',$content);
+        $request->execute();
+        return $request->fetchAll();
+    }
+
 }

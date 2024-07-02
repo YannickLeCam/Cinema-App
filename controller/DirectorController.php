@@ -12,7 +12,14 @@ class DirectorController {
  */
     public function listDirectors(){
         $directorManager = new DirectorManager();
-        $directors = $directorManager->getDirectors();
+
+        if (isset($_POST['SubmitSearchButton'])) {
+            $content = filter_input(INPUT_POST,'nameContain',FILTER_SANITIZE_SPECIAL_CHARS);
+            $directors = $directorManager->getDirectorsSearch($content);
+        }else {
+            $directors = $directorManager->getDirectors();
+        }
+        
         
         require 'view/listDirectors.php';
     }

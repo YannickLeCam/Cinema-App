@@ -12,8 +12,13 @@ class ActorController {
  */
     public function listActors(){
         $actorManager = new ActorManager();
-
-        $listActors = $actorManager->getActors();
+        if (isset($_POST['SubmitSearchButton'])) {
+            $content = filter_input(INPUT_POST,'nameContain',FILTER_SANITIZE_SPECIAL_CHARS);
+            $listActors = $actorManager->getActorsSearch($content);
+        }else {
+            $listActors = $actorManager->getActors();
+        }
+        
 
         require "view/listActors.php";
     }

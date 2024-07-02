@@ -137,4 +137,16 @@ class DirectorManager{
         }
     }
 
+    public function getDirectorsSearch(string $content):array{
+        $content = '%'.$content.'%';
+        $request = $this->pdo->prepare("
+            SELECT person.* , id_director
+            FROM person,director
+            Where person.id_person = director.id_person AND person.name LIKE :content;
+        ");
+        $request->bindParam(':content',$content);
+        $request->execute();
+        return $request->fetchAll();
+    }
+
 }
