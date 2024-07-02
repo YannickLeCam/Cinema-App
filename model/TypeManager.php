@@ -118,5 +118,16 @@ class TypeManager{
         
         return false;
     }
+    public function getTypesSearch(string $content):array{
+        $content = '%' . $content . '%';
+        $request = $this->pdo->prepare("
+            SELECT *
+            FROM type
+            WHERE name LIKE :content;
+        ");
+        $request->bindParam(':content',$content);
+        $request->execute();
+        return $request->fetchAll();
+    }
 
 }

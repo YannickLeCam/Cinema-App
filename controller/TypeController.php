@@ -12,7 +12,13 @@ class TypeController {
  */
     public function listTypes(){
         $typeManager = new TypeManager();
-        $listTypes = $typeManager->getTypes();
+        if (isset($_POST['SubmitSearchButton'])) {
+            $content = filter_input(INPUT_POST,'nameContain',FILTER_SANITIZE_SPECIAL_CHARS);
+            $listTypes = $typeManager->getTypesSearch($content);
+        }else {
+            $listTypes = $typeManager->getTypes();
+        }
+        
         
         require "view/listTypes.php";
     }

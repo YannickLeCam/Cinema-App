@@ -12,8 +12,13 @@ class RoleController {
  */
     public function listRole(){
         $roleManager = new RoleManager();
-        $listRoles=$roleManager->getRoles();
-
+        if (isset($_POST['SubmitSearchButton'])) {
+            $content = filter_input(INPUT_POST,'nameContain',FILTER_SANITIZE_SPECIAL_CHARS);
+            $listRoles = $roleManager->getRolesSearch($content);
+        }else {
+            $listRoles=$roleManager->getRoles();
+        }
+    
         require 'view/listRoles.php';
     }
 

@@ -118,6 +118,18 @@ class RoleManager{
 
     }
 
+    public function getRolesSearch(string $content):array{
+        $content = '%'. $content . '%';
+        $request = $this->pdo->prepare("
+            SELECT *
+            FROM role
+            WHERE name LIKE :content;
+        ");
+        $request->bindParam(":content",$content);
+        $request->execute(); 
+    return $request->fetchAll();
+    }
+
 }
 
 
