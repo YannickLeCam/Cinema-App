@@ -4,7 +4,7 @@
 function createCardsTypes($listRoles){
     $htmlContent ="";
     foreach ($listRoles as $role) {
-        $htmlContent .= '<a href="./index.php?action=detailRole&id='.$role['id_role'].'"><div class="card"><h4>'.$role['name'].'</h4></div></a>';
+        $htmlContent .= '<a href="./index.php?action=detailRole&id='.$role['id_role'].'"><div class="Card"><h4>'.$role['name'].'</h4></div></a>';
     }
     return $htmlContent;
 }

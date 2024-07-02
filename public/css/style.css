@@ -160,24 +160,24 @@ header a:visited , header a:checked {
     color: rgb(49, 49, 49);
 }
 
-.cardHeader{
+.CardHeader{
     height: 80%;
     overflow: hidden;
 }
-.card {
+.Card {
     position: relative;
     height: 45vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.card h4{
+.Card h4{
     display: flex;
     flex:1;
     align-items: center;
     justify-content: center;
 }
-.card p{
+.Card p{
     position: absolute;
     top:0%;
     right: 0%;
@@ -189,10 +189,10 @@ header a:visited , header a:checked {
     justify-content: center;
     color: rgb(49, 49, 49);
 }
-.card p:visited ,.card p:checked{
+.Card p:visited ,.Card p:checked{
     color: lightgray;
 }
-.card img {
+.Card img {
     object-fit: contain;
     width: 100%;
 }
@@ -213,13 +213,13 @@ header a:visited , header a:checked {
 #listCardWithoutPicture a:checked,#listCardWithoutPicture a:visited{
     color: rgb(49, 49, 49);
 }
-#listCardWithoutPicture .card{
+#listCardWithoutPicture .Card{
     height: 8vh;
     padding: 1%;
     transition: 0.5s;
 }
 
-#listCardWithoutPicture .card::after {
+#listCardWithoutPicture .Card::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -229,10 +229,10 @@ header a:visited , header a:checked {
     border-bottom: 2px solid black; 
 
   }
-#listCardWithoutPicture .card h4{
+#listCardWithoutPicture .Card h4{
     line-height: 0.5;
 }
-#listCardWithoutPicture .card p{
+#listCardWithoutPicture .Card p{
     position: relative;
     background-color: white;
     width: 100%;

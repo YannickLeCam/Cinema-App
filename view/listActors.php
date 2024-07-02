@@ -14,7 +14,7 @@ function createCardsActors($listActors):string{
         else {
             $ne="Né";
         }
-        $htmlContent .= '<a href="./index.php?action=detailActor&id='.$actor['id_actor'].'"><div class="card"><h4>'.$actor['name'].' '.$actor['firstname'].'</h4><p>'.$ne.' le '. $formattedBirthday.'</p></div></a>';
+        $htmlContent .= '<a href="./index.php?action=detailActor&id='.$actor['id_actor'].'"><div class="Card"><h4>'.$actor['name'].' '.$actor['firstname'].'</h4><p>'.$ne.' le '. $formattedBirthday.'</p></div></a>';
     }
 
     return $htmlContent;

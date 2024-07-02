@@ -58,7 +58,10 @@ class ActorController {
                 if ($directorManager->insertActor($data)) {
                     $_SESSION['success']="L'Acteur $name $firstname a bien été enregistré";
                 }else {
-                    
+                    $_SESSION['error']="L'Acteur $name $firstname a eu une erreur lors de l'ajout";
+                    $_SESSION['dataActor']=$data;
+                    header("Location:./index.php?createActor");
+                    die();
                 }
             }else {
                 $_SESSION["error"]="Il semble manquer un atribut . . .";

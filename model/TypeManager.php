@@ -96,13 +96,12 @@ class TypeManager{
  * is not set in the input data array.
  */
     public function insertType(array $data):bool{
+
         if (isset($data['name'])) {
             try {
                 $request = $this->pdo->prepare("
                     INSERT INTO type (name)
-                    VALUES(
-                    :name
-                    );
+                    VALUES (:name);
                 ");
                 $request->bindParam(':name',$data['name']);
                 if ($request->execute()) {
@@ -111,7 +110,7 @@ class TypeManager{
                     return false;
                 }
             } catch (\Exception $e) {
-                $_SESSION["error"]=$e;
+                $_SESSION["error"]=$e->getMessage();
                 return false;
             }
 

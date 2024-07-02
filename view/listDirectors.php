@@ -15,7 +15,7 @@ function createCardsDirectors($listDirectors):string{
         else {
             $ne="Né";
         }
-        $htmlContent .= '<a href="./index.php?action=detailDirector&id='.$director['id_director'].'"><div class="card"><h4>'.$director['name'].' '.$director['firstname'].'</h4><p>'.$ne.' le '. $formattedBirthday.'</p></div></a>';
+        $htmlContent .= '<a href="./index.php?action=detailDirector&id='.$director['id_director'].'"><div class="Card"><h4>'.$director['name'].' '.$director['firstname'].'</h4><p>'.$ne.' le '. $formattedBirthday.'</p></div></a>';
     }
 
     return $htmlContent;

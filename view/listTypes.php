@@ -3,7 +3,7 @@
 function createCardsTypes($listTypes){
     $htmlContent ="";
     foreach ($listTypes as $type) {
-        $htmlContent .= '<a href="./index.php?action=detailType&id='.$type['id_type'].'"><div class="card"><h4>'.$type['name'].'</h4></div></a>';
+        $htmlContent .= '<a href="./index.php?action=detailType&id='.$type['id_type'].'"><div class="Card"><h4>'.$type['name'].'</h4></div></a>';
     }
     return $htmlContent;
 }

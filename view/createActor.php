@@ -1,6 +1,5 @@
 <?php
 ob_start();
-var_dump($_SESSION);
 if (isset($_SESSION['actorData'])) {
     $data = $_SESSION['actorData'];
     unset($_SESSION['actorData']);
@@ -12,7 +11,7 @@ $navService= new NavService();
 echo $navService->navCreate();
 ?>
 
-<form action="./index.php?action=createDirector" method="post">
+<form action="./index.php?action=createActor" method="post">
     <label for="name">Entrer le prénom :</label>
     <input type="text" name="firstname" id="" value="<?=isset($data["firstname"])?htmlentities($data["firstname"]):""?>">
     <label for="name">Entrer le nom :</label>

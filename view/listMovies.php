@@ -5,7 +5,7 @@ function createCardsMovies (array $listMovies):string{
     $htmlContent= "";
     foreach ($listMovies as $movie) {
         $htmlContent .= '<a href="./index.php?action=detailMovie&id='.$movie['id_movie'].'">';
-        $htmlContent .= '<div class="card"> <div class="cardHeader"><img src="'.$movie['poster'].'" alt=""></div> <h4>'.$movie['name'].'</h4>  <p>'.$movie['rate'].'</p> </div> ';
+        $htmlContent .= '<div class="Card"> <div class="CardHeader"><img src="'.$movie['poster'].'" alt=""></div> <h4>'.$movie['name'].'</h4>  <p>'.$movie['rate'].'</p> </div> ';
         $htmlContent .= '</a>';
     }
     return $htmlContent;
