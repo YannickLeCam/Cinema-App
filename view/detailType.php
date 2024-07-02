@@ -1,4 +1,12 @@
 <?php ob_start();
+
+
+
+
+use Service\NavService;
+
+$navService=new NavService();
+echo $navService->navCreate();
 ?>
 
 
