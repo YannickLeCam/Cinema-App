@@ -1,16 +1,12 @@
 <?php ob_start();
 
 
-function createCardsTypes($listRoles){
-    $htmlContent ="";
-    foreach ($listRoles as $role) {
-        $htmlContent .= '<a href="./index.php?action=detailRole&id='.$role['id_role'].'"><div class="Card"><h4>'.$role['name'].'</h4></div></a>';
-    }
-    return $htmlContent;
-}
+
 
 use Service\NavService;
+use Service\CardService;
 
+$cardService=new CardService();
 $navService=new NavService();
 echo $navService->navList();
 ?>
@@ -23,7 +19,7 @@ echo $navService->navList();
             <input type="submit" name="SubmitSearchButton" value="Rechercher">
         </form>
     </div>
-    <?=createCardsTypes($listRoles)?>
+    <?=$cardService->createCardsRoles($listRoles)?>
 </div>
 
 

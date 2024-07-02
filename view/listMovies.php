@@ -1,18 +1,12 @@
 <?php ob_start();
 
 
-function createCardsMovies (array $listMovies):string{
-    $htmlContent= "";
-    foreach ($listMovies as $movie) {
-        $htmlContent .= '<a href="./index.php?action=detailMovie&id='.$movie['id_movie'].'">';
-        $htmlContent .= '<div class="Card"> <div class="CardHeader"><img src="'.$movie['poster'].'" alt=""></div> <h4>'.$movie['name'].'</h4>  <p>'.$movie['rate'].'</p> </div> ';
-        $htmlContent .= '</a>';
-    }
-    return $htmlContent;
-}
+
 
 use Service\NavService;
+use Service\CardService;
 
+$cardService=new CardService();
 $navService=new NavService();
 echo $navService->navList();
 ?>
@@ -25,7 +19,7 @@ echo $navService->navList();
             <input type="submit" name="SubmitSearchButton" value="Rechercher">
         </form>
     </div>
-    <?=createCardsMovies($listMovies)?>
+    <?=$cardService->createCardsMovies($listMovies)?>
 </div>
 
 <pre>

@@ -1,27 +1,11 @@
 <?php ob_start();
 
-function createCardsActors($listActors):string{
-    $htmlContent ="";
-    foreach ($listActors as $actor) {
-        $birthday = new DateTime($actor['birthday']);
-        
-        // Formatter la date en français
-        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-        $formattedBirthday = $formatter->format($birthday);
-        if ($actor['genre']=="Female") {
-            $ne= "Née";
-        }
-        else {
-            $ne="Né";
-        }
-        $htmlContent .= '<a href="./index.php?action=detailActor&id='.$actor['id_actor'].'"><div class="Card"><h4>'.$actor['name'].' '.$actor['firstname'].'</h4><p>'.$ne.' le '. $formattedBirthday.'</p></div></a>';
-    }
 
-    return $htmlContent;
-}
 
 use Service\NavService;
+use Service\CardService;
 
+$cardService=new CardService();
 $navService=new NavService();
 echo $navService->navList();
 ?>
@@ -33,7 +17,7 @@ echo $navService->navList();
             <input type="submit" name="SubmitSearchButton" value="Rechercher">
         </form>
     </div>
-    <?=createCardsActors($listActors)?>
+    <?=$cardService->createCardsActors($listActors)?>
 </div>
 
 

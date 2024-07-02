@@ -1,29 +1,10 @@
 <?php ob_start();
 
 
-function createCardsDirectors($listDirectors):string{
-    $htmlContent ="";
-    foreach ($listDirectors as $director) {
-        $birthday = new DateTime($director['birthday']);
-        
-        // Formatter la date en français
-        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-        $formattedBirthday = $formatter->format($birthday);
-        if ($director['genre']=="Female") {
-            $ne= "Née";
-        }
-        else {
-            $ne="Né";
-        }
-        $htmlContent .= '<a href="./index.php?action=detailDirector&id='.$director['id_director'].'"><div class="Card"><h4>'.$director['name'].' '.$director['firstname'].'</h4><p>'.$ne.' le '. $formattedBirthday.'</p></div></a>';
-    }
-
-    return $htmlContent;
-}
-
-
 use Service\NavService;
+use Service\CardService;
 
+$cardService=new CardService();
 $navService=new NavService();
 echo $navService->navList();
 ?>
@@ -35,7 +16,7 @@ echo $navService->navList();
             <input type="submit" name="SubmitSearchButton" value="Rechercher">
         </form>
     </div>
-    <?=createCardsDirectors($directors)?>
+    <?=$cardService->createCardsDirectors($directors)?>
 </div>
 
 <pre>
