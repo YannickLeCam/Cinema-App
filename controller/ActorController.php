@@ -21,7 +21,7 @@ class ActorController {
         }
         
 
-        require "view/listActors.php";
+        require "view/list/listActors.php";
     }
 
     /**
@@ -38,7 +38,7 @@ class ActorController {
         $filmography = $actorManager->getRoleMovieOfActor($id);
         $productMovies = $actorManager->getProductMovies($id);
 
-        require "view/detailActor.php";
+        require "view/detail/detailActor.php";
     }
 
 /**
@@ -78,7 +78,7 @@ class ActorController {
             }
         }
 
-        require 'view/createActor.php';
+        require 'view/create/createActor.php';
     }
 
 

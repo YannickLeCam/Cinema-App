@@ -24,7 +24,7 @@ class MovieController {
         }
         
   
-        require "view/listMovies.php";
+        require "view/list/listMovies.php";
     }
 
     /**
@@ -41,7 +41,7 @@ class MovieController {
         $listTypes = $movieManager->getTypesOfMovie($id_movie);
         $director = $movieManager->getDirectorOfMovie($id_movie);
 
-        require "view/detailMovie.php";
+        require "view/detail/detailMovie.php";
     }
 
     /**
@@ -179,7 +179,7 @@ class MovieController {
             }
         }
 
-        require 'view/createCasting.php';
+        require 'view/create/createCasting.php';
     }
 
    /**

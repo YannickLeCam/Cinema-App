@@ -21,7 +21,7 @@ class DirectorController {
         }
         
         
-        require 'view/listDirectors.php';
+        require 'view/list/listDirectors.php';
     }
 
 /**
@@ -40,7 +40,7 @@ class DirectorController {
         $listMovies = $directorManager->getMovieOfDirector($id);
         $playedMovies = $directorManager->getPlayedMovies($id);
 
-        require 'view/detailDirector.php';
+        require 'view/detail/detailDirector.php';
     }
 
 /**
@@ -77,7 +77,7 @@ class DirectorController {
             }
         }
 
-        require 'view/createDirector.php';
+        require 'view/create/createDirector.php';
     }
 
 

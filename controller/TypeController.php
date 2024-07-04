@@ -20,7 +20,7 @@ class TypeController {
         }
         
         
-        require "view/listTypes.php";
+        require "view/list/listTypes.php";
     }
 
 /**
@@ -38,7 +38,7 @@ class TypeController {
         $type = $typeManager->getTypeDetail($id);
         $listMovies = $typeManager->getFilmOfType($id);
 
-        require 'view/detailType.php';
+        require 'view/detail/detailType.php';
     }
 
 
@@ -79,7 +79,7 @@ class TypeController {
             die;
         }
         
-        require 'view/createType.php'; // form to create a new Type
+        require 'view/create/createType.php'; // form to create a new Type
     }
 }
 

@@ -19,7 +19,7 @@ class RoleController {
             $listRoles=$roleManager->getRoles();
         }
     
-        require 'view/listRoles.php';
+        require 'view/list/listRoles.php';
     }
 
     /**
@@ -34,7 +34,7 @@ class RoleController {
         $managerRole = new RoleManager();
         $role = $managerRole->getRoleDetail($id_role);
         $listCasting =  $managerRole->getActorMovieOfRole($id_role);
-        require "view/detailRole.php";
+        require "view/detail/detailRole.php";
     }
 
     /**
@@ -72,6 +72,6 @@ class RoleController {
             die;
         }
         
-        require "view/createRole.php";
+        require "view/create/createRole.php";
     }
 }
