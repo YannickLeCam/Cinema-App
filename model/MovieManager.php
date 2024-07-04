@@ -94,9 +94,9 @@ class MovieManager{
  * 'name' which represents the role name, and 'Actor' which represents the concatenated full name of
  * the actor.
  */
-    public function getActorRoleOfMovie(int $id){
+    public function getActorRoleOfMovie(int $id):array{
         $requestCasting = $this->pdo->prepare("
-            SELECT role.name , CONCAT(person.name,' ',person.firstname) AS Actor
+            SELECT role.name , CONCAT(person.name,' ',person.firstname) AS Actor , actor.id_actor, role.id_role, person.genre
             FROM casting
             JOIN actor
             ON actor.id_actor = casting.id_actor

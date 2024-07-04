@@ -9,25 +9,25 @@ use Service\CardService;
 
 $cardService = new CardService();
 ?>
-
-<h2>Informations</h2>
-<p>L'<?=$actor['genre']=='Female' ? "actrice" : 'acteur'?> est né<?=$actor['genre']=="Female" ? "e":""?> le <?=$formattedBirthday?>. </p>
-<?=!empty($filmography) ? "<h2>Filmography</h2>" : ""?>
-<?=$cardService->createListFilmographyActor($filmography,$actor['genre'])?>
-<?php
-if (!empty($productMovies)) {
-    count($productMovies)>1 ? $s="s":$s="";
-    echo <<<HTML
-    <h2>Film$s</h2>
-HTML;
-    echo "<ul>";
-    foreach ($productMovies as $movie) {
-        echo '<div class="card"><li> A produit <a href="./index.php?action=detailMovie&id='.$movie['id_movie'].'">'.$movie['name'].'</a></li> </div>';
+<div id="wrapperWithoutPicture">
+    <h2>Informations</h2>
+    <p>L'<?=$actor['genre']=='Female' ? "actrice" : 'acteur'?> est né<?=$actor['genre']=="Female" ? "e":""?> le <?=$formattedBirthday?>. </p>
+    <?=!empty($filmography) ? "<h2>Filmography</h2>" : ""?>
+    <?=$cardService->createListFilmographyActor($filmography,$actor['genre'])?>
+    <?php
+    if (!empty($productMovies)) {
+        count($productMovies)>1 ? $s="s":$s="";
+        echo <<<HTML
+        <h2>Film$s</h2>
+    HTML;
+        echo "<ul>";
+        foreach ($productMovies as $movie) {
+            echo '<div class="card"><li> A produit <a href="./index.php?action=detailMovie&id='.$movie['id_movie'].'">'.$movie['name'].'</a></li> </div>';
+        }
+        echo "</ul>";
     }
-    echo "</ul>";
-}
-?>
-
+    ?>
+</div>
 
 
 

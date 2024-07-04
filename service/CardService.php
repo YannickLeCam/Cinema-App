@@ -187,10 +187,27 @@ class CardService {
                 $product = "réalisé";
             }
             $htmlContent.='<div class="card"><li>';
-            $htmlContent.= 'A '.$product.' le film <a href=./index.php?action=detailMovie&id="'.$movie['id_movie'].'">'.$movie['name'].'</a></li>' ;
+            $htmlContent.= 'A '.$product.' le film <a href=./index.php?action=detailMovie&id='.$movie['id_movie'].'>'.$movie['name'].'</a></li>' ;
             $htmlContent.='</div>';
         }
         $htmlContent.='</ul>';
+        return $htmlContent;
+    }
+
+    public function createListCasting(array $listCasting):string{
+        if (empty($listCasting)) {
+            return "";
+        }
+        $htmlContent="<ul>";
+        foreach ($listCasting as $casting) {
+            if ($casting['genre']=='Female') {
+                $incarne = "incarnée";
+            }else {
+                $incarne = "incarné";
+            }
+            $htmlContent .= "<div class='card'><li><a href='./index.php?action=detailActor&id=".$casting['id_actor']."'> ".$casting['Actor']."</a> a $incarne le role de <a href='./index.php?action=detailRole&id=".$casting['id_role']."'>".$casting['name']."</a>. </li></div>";
+        }
+        $htmlContent.="</ul>";
         return $htmlContent;
     }
 }

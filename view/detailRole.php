@@ -7,8 +7,11 @@ use Service\CardService;
 $cardService = new CardService();
 ?>
 
-<h2>Filmography</h2>
-<?=$cardService->createListFilmographyRole($listCasting)?>
+<div id="wrapperWithoutPicture">
+    <h2>Filmography</h2>
+    <?=$cardService->createListFilmographyRole($listCasting)?>
+</div>
+
 
 
 

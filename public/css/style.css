@@ -8,6 +8,10 @@ POlice : Bungee-regular
     box-sizing: 0;
 }
 
+h1{
+    text-align: center;
+    margin: 5%;
+}
 
 header{
     width: 100vw;
@@ -281,3 +285,43 @@ form .btn{
     align-self: center;
 }
 
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+
+#wrapper{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: stretch;
+    justify-items: center;
+}
+
+#wrapperWithoutPicture{
+    display: flex;
+    flex-direction: column;
+}
+
+#afficheDetail{
+    width: 40vw;
+    box-shadow: 0 0 0 0 rgb(49, 49, 49);
+}
+
+#wrapper ul{
+    padding: 0;
+}
+
+#wrapper a{
+    color: rgb(49, 49, 49);
+    font-weight: bold;
+}
+
+#wrapper a:hover{
+    color:rgb(99, 99, 99);
+}
+
+#wrapper a:visited #wrapper a:checked{
+    color: rgb(49, 49, 49);
+}
