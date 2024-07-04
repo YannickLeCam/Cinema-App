@@ -31,6 +31,9 @@ header #logo {
     left: 3%;
     font-size: xx-large;
 }
+#logo p {
+    margin-bottom: 0;
+}
 
 header nav{
     justify-self: center;
@@ -142,14 +145,21 @@ header a:visited , header a:checked {
     grid-template-columns: repeat(4,1fr);
     gap: 3%;
     max-width: 100vw;
-    padding: 5% 3% 3%;
+    padding: 10vh 3% 3%;
     margin: 2%;
     border-radius: 20px;
     border: 5px rgb(49, 49, 49) solid;
 }
 
 #listCard #research{
-    position: absolute
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#listCard form {
+    width: 40vw;
 }
 
 #listCard a{
@@ -211,7 +221,7 @@ header a:visited , header a:checked {
     display: flex;
     flex-direction: column;
     max-width: 100vw;
-    padding: 5% 0 3%;
+    padding: 0 0 3%;
     margin: 2%;
     border-radius: 20px;
     border: 5px rgb(49, 49, 49) solid;
@@ -256,7 +266,14 @@ header a:visited , header a:checked {
     background-color:rgb(212, 212, 212) ;
     transition: 0.5s;
 }
-
+#listCardWithoutPicture form{
+    width: 40vw;
+}
+#listCardWithoutPicture #research{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 form{
     padding: 2%;
     display: flex;
@@ -349,9 +366,23 @@ li{
         height: 60vh;
     }
     .CardHeader{
-        height: 60%;
+        height: 75%;
     }
     #navCreate ul, #navList ul{
         flex-wrap: wrap;
     }
+    #listCard .Card h4{
+        align-items: flex-start;
+    }
+    #wrapper{
+        grid-template-columns: 1fr;
+        padding: 2%;
+    }
+    #wrapper img {
+        width: 100%;
+    }
+    #wrapperWithoutPicture{
+        padding: 2%;
+    }
+
 }

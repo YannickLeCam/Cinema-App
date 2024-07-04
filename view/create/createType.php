@@ -22,8 +22,8 @@ echo $navService->navCreate();
 
 
 <?php
-$title = "Nouveau type";
-$titleText = "Nouveau type";
+$title = "Nouveau Genre";
+$titleText = "Nouveau Genre";
 $content = ob_get_clean();
 require_once "view/template.php";
 ?>
