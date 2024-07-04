@@ -23,7 +23,7 @@ class CardService {
         foreach ($listActors as $actor) {
             $birthday = new \DateTime($actor['birthday']);
             
-            // Formatter la date en français
+            // Formate the date in french
             $formatter = new \IntlDateFormatter('fr_FR', \IntlDateFormatter::FULL, \IntlDateFormatter::NONE);
             $formattedBirthday = $formatter->format($birthday);
             if ($actor['genre']=="Female") {
@@ -138,4 +138,38 @@ class CardService {
         }
         return $htmlContent;
     }
+
+    public function createListFilmographyRole (array $listCasting):string{
+        $htmlContent='<ul>';
+        foreach ($listCasting as $key => $casting) {
+            $actorName=$casting['actorName'] . ' ' . $casting['firstname'];
+            $htmlContent.='<div class="card"><li>';
+            if ($casting['genre']=='female') {
+                $htmlContent.='L\'actrice ';
+            }else {
+                $htmlContent.='L\'acteur ';
+            }
+            $htmlContent.= '<a href="./index.php?action=detailActor&id='.$casting['id_actor'].'">'.$actorName.'</a>' . ' a incarné le role dans le film <a href="./index.php?action=detailMovie&id='.$casting['id_movie'].'">'.$casting['movieName'].'</a> </li>' ;
+            $htmlContent.='</div>';
+        }
+        $htmlContent.='</ul>';
+        return $htmlContent;
+    }
+
+    public function createListFilmographyActor (array $listCasting,$genre){
+        $htmlContent='<ul>';
+        foreach ($listCasting as $key => $casting) {
+            if ($genre == 'Female') {
+                $incarne = "incarnée";
+            }else {
+                $incarne = "incarné";
+            }
+            $htmlContent.='<div class="card"><li>';
+            $htmlContent.= 'A '.$incarne.' le role '.'<a href="./index.php?action=detailRole&id='.$casting['id_role'].'">'.$casting['roleName'].'</a> dans le film <a href="./index.php?action=detailMovie&id='.$casting['id_movie'].'">'.$casting['movieName'].'</a> </li>' ;
+            $htmlContent.='</div>';
+        }
+        $htmlContent.='</ul>';
+        return $htmlContent;
+    }
 }
+

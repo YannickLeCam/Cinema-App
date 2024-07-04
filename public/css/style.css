@@ -25,6 +25,7 @@ header{
 header #logo {
     position: absolute;
     left: 3%;
+    font-size: xx-large;
 }
 
 header nav{
@@ -46,6 +47,7 @@ header nav li{
 header a {
     text-decoration: none;
     font-size: x-large;
+    color: lightgray;
 }
 header li::after{
     content: '';

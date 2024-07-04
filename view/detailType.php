@@ -3,10 +3,9 @@
 
 
 
-use Service\NavService;
+use Service\CardService;
 
-$navService=new NavService();
-echo $navService->navCreate();
+$cardService = new CardService();
 ?>
 
 

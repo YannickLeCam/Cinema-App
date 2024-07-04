@@ -66,7 +66,7 @@ class ActorManager{
  */
     public function getRoleMovieOfActor(int $id):array {
         $request = $this->pdo->prepare("
-            SELECT role.name, movie.name
+            SELECT role.name AS roleName, movie.name AS movieName, movie.id_movie , role.id_role
             FROM actor
             JOIN casting
             ON casting.id_actor = actor.id_actor

@@ -1,5 +1,7 @@
 <?php ob_start();
+use Service\CardService;
 
+$cardService = new CardService();
 ?>
 
 
