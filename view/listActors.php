@@ -21,15 +21,6 @@ echo $navService->navList();
 </div>
 
 
-<pre>
-    <?=var_dump($listActors)?>
-</pre>
-
-
-
-
-
-
 
 <?php
 $title = "Liste des Acteurs";

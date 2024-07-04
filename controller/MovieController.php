@@ -128,7 +128,7 @@ class MovieController {
             }
         }
 
-        require 'view/createMovie.php';
+        require 'view/create/createMovie.php';
     }
 
 /**

@@ -263,6 +263,10 @@ form{
     flex-direction: column;
     align-items: stretch;
 }
+label.btn{
+    border-color: lightgrey;
+}
+
 .form-select:focus,.form-control:focus{
     box-shadow: 7px 7px 7px rgb(212, 212, 212);
     border-color :2px rgb(49, 49, 49) solid;
@@ -324,4 +328,30 @@ li{
 
 #wrapper a:visited #wrapper a:checked{
     color: rgb(49, 49, 49);
+}
+
+@media only screen and (max-width: 1200px) {
+    #listCard{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    #listCard{
+        padding-top: 10vh;
+        grid-template-columns: repeat(1,1fr);
+    }
+    #listCardWithoutPicture .Card{
+        margin-top: 2%;
+    }
+    #listCard .Card{
+        height: 60vh;
+    }
+    .CardHeader{
+        height: 60%;
+    }
+    #navCreate ul, #navList ul{
+        flex-wrap: wrap;
+    }
 }

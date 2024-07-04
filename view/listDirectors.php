@@ -19,13 +19,6 @@ echo $navService->navList();
     <?=$cardService->createCardsDirectors($directors)?>
 </div>
 
-<pre>
-    <?=var_dump($directors)?>
-</pre>
-
-
-
-
 
 
 
