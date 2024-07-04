@@ -20,7 +20,8 @@ class MovieManager{
     public function getMovies():array{
         $request = $this->pdo->query("
             SELECT *
-            FROM movie;
+            FROM movie
+            ORDER BY movie.date_release DESC;
         ");
         $request->execute();
         return $request->fetchAll();

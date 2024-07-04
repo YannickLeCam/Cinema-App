@@ -21,7 +21,8 @@ class TypeManager{
     public function getTypes():array{
         $request = $this->pdo->query("
             SELECT *
-            FROM type;
+            FROM type
+            ORDER BY name;
         ");
         $request->execute();
         return $request->fetchAll();
@@ -74,7 +75,8 @@ class TypeManager{
             ON be.id_type = type.id_type
             JOIN movie
             ON movie.id_movie = be.id_movie
-            WHERE be.id_type = :id;
+            WHERE be.id_type = :id
+            ORDER BY date_release;
         ");
         $request->bindParam(":id",$id);
         $request->execute();
@@ -123,7 +125,8 @@ class TypeManager{
         $request = $this->pdo->prepare("
             SELECT *
             FROM type
-            WHERE name LIKE :content;
+            WHERE name LIKE :content
+            ORDER BY name;
         ");
         $request->bindParam(':content',$content);
         $request->execute();

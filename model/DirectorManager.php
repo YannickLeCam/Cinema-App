@@ -25,7 +25,8 @@ class DirectorManager{
         $request = $this->pdo->query("
             SELECT person.* , id_director
             FROM person,director
-            Where person.id_person = director.id_person;
+            WHERE person.id_person = director.id_person
+            ORDER BY person.name;
         ");
         $request->execute();
         return $request->fetchAll();
@@ -68,9 +69,10 @@ class DirectorManager{
  */
     public function getMovieOfDirector(int $id){
         $request = $this->pdo->prepare("
-            SELECT *
+            SELECT * , YEAR(movie.date_release) AS date_release
             FROM movie
-            WHERE id_director = :id;
+            WHERE id_director = :id
+            ORDER BY movie.date_release;
         ");
         $request->bindParam(":id",$id);
         $request->execute();
@@ -142,7 +144,8 @@ class DirectorManager{
         $request = $this->pdo->prepare("
             SELECT person.* , id_director
             FROM person,director
-            Where person.id_person = director.id_person AND person.name LIKE :content;
+            WHERE person.id_person = director.id_person AND (person.name LIKE :content OR person.firstname LIKE :content)
+            ORDER BY person.name;
         ");
         $request->bindParam(':content',$content);
         $request->execute();
@@ -150,7 +153,7 @@ class DirectorManager{
     }
     public function getPlayedMovies(int $id){
         $request = $this->pdo->prepare("
-            SELECT role.name AS roleName, movie.name AS movieName, movie.id_movie , role.id_role
+            SELECT role.name AS roleName, movie.name AS movieName, movie.id_movie , role.id_role , YEAR(movie.date_release) AS date_release
             FROM director
             JOIN person
             ON person.id_person = director.id_person

@@ -149,7 +149,7 @@ class CardService {
             }else {
                 $htmlContent.='L\'acteur ';
             }
-            $htmlContent.= '<a href="./index.php?action=detailActor&id='.$casting['id_actor'].'">'.$actorName.'</a>' . ' a incarné le role dans le film <a href="./index.php?action=detailMovie&id='.$casting['id_movie'].'">'.$casting['movieName'].'</a> </li>' ;
+            $htmlContent.= '<a href="./index.php?action=detailActor&id='.$casting['id_actor'].'">'.$actorName.'</a>' . ' a incarné le role dans le film <a href="./index.php?action=detailMovie&id='.$casting['id_movie'].'">'.$casting['movieName'].'</a> ('.$casting['date_release'].')</li>' ;
             $htmlContent.='</div>';
         }
         $htmlContent.='</ul>';
@@ -168,7 +168,7 @@ class CardService {
                 $incarne = "incarné";
             }
             $htmlContent.='<div class="card"><li>';
-            $htmlContent.= 'A '.$incarne.' le role '.'<a href="./index.php?action=detailRole&id='.$casting['id_role'].'">'.$casting['roleName'].'</a> dans le film <a href="./index.php?action=detailMovie&id='.$casting['id_movie'].'">'.$casting['movieName'].'</a> </li>' ;
+            $htmlContent.= 'A '.$incarne.' le role '.'<a href="./index.php?action=detailRole&id='.$casting['id_role'].'">'.$casting['roleName'].'</a> dans le film <a href="./index.php?action=detailMovie&id='.$casting['id_movie'].'">'.$casting['movieName'].'</a> ('.$casting['date_release'].') </li>' ;
             $htmlContent.='</div>';
         }
         $htmlContent.='</ul>';
@@ -187,7 +187,7 @@ class CardService {
                 $product = "réalisé";
             }
             $htmlContent.='<div class="card"><li>';
-            $htmlContent.= 'A '.$product.' le film <a href=./index.php?action=detailMovie&id='.$movie['id_movie'].'>'.$movie['name'].'</a></li>' ;
+            $htmlContent.= 'A '.$product.' le film <a href=./index.php?action=detailMovie&id='.$movie['id_movie'].'>'.$movie['name'].'</a> ('.$movie['date_release'].')</li>' ;
             $htmlContent.='</div>';
         }
         $htmlContent.='</ul>';

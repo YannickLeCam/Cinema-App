@@ -22,6 +22,7 @@ class RoleManager{
         $request = $this->pdo->query("
             SELECT *
             FROM role
+            ORDER BY name;
         ");
         $request->execute(); 
         return $request->fetchAll();
@@ -66,7 +67,7 @@ class RoleManager{
  */
     public function getActorMovieOfRole(int $id):array{
         $requestActor = $this->pdo -> prepare ("
-            SELECT person.name AS actorName, person.firstname, person.genre, movie.name AS movieName , actor.id_actor , movie.id_movie
+            SELECT person.name AS actorName, person.firstname, person.genre, movie.name AS movieName , actor.id_actor , movie.id_movie , YEAR(movie.date_release) AS date_release
             FROM role
             JOIN casting
             ON casting.id_role = role.id_role
@@ -77,6 +78,7 @@ class RoleManager{
             JOIN movie
             ON movie.id_movie = casting.id_movie 
             WHERE role.id_role = :id;
+            ORDER BY movie.date_release
         ");
         $requestActor->bindParam(":id",$id);
         $requestActor->execute();
@@ -124,6 +126,7 @@ class RoleManager{
             SELECT *
             FROM role
             WHERE name LIKE :content;
+            ORDER BY name
         ");
         $request->bindParam(":content",$content);
         $request->execute(); 

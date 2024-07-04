@@ -21,7 +21,8 @@ class ActorManager{
         $request = $this->pdo->query("
             SELECT person.* , id_actor
             FROM person,actor
-            Where person.id_person = actor.id_person;
+            WHERE person.id_person = actor.id_person
+            ORDER BY person.name;
         ");
         $request->execute();
         return $request->fetchAll();
@@ -66,7 +67,7 @@ class ActorManager{
  */
     public function getRoleMovieOfActor(int $id):array {
         $request = $this->pdo->prepare("
-            SELECT role.name AS roleName, movie.name AS movieName, movie.id_movie , role.id_role
+            SELECT role.name AS roleName, movie.name AS movieName, movie.id_movie , role.id_role , YEAR(movie.date_release) AS date_release
             FROM actor
             JOIN casting
             ON casting.id_actor = actor.id_actor
@@ -74,7 +75,8 @@ class ActorManager{
             ON role.id_role = casting.id_role
             JOIN movie
             ON movie.id_movie = casting.id_movie
-            WHERE actor.id_actor = :id;
+            WHERE actor.id_actor = :id
+            ORDER BY movie.date_release;
         ");
         $request-> bindParam(":id",$id);
         $request->execute();
@@ -146,7 +148,8 @@ class ActorManager{
         $request = $this->pdo->prepare("
             SELECT person.* , id_actor
             FROM person,actor
-            Where person.id_person = actor.id_person AND person.name LIKE :content;
+            Where person.id_person = actor.id_person AND (person.name LIKE :content OR person.firstname LIKE :content)
+            ORDER BY person.name;
         ");
         $request->bindParam(':content',$content);
         $request->execute();
@@ -155,7 +158,7 @@ class ActorManager{
 
     public function getProductMovies(int $id){
         $request = $this->pdo->prepare("
-            SELECT movie.name, movie.id_movie
+            SELECT movie.name, movie.id_movie, YEAR(movie.date_release) AS date_release
             FROM actor
             JOIN person
             ON person.id_person = actor.id_person
@@ -163,7 +166,8 @@ class ActorManager{
             ON person.id_person = director.id_person
             JOIN movie
             ON movie.id_director = director.id_director
-            WHERE actor.id_actor = :id;
+            WHERE actor.id_actor = :id
+            ORDER BY movie.date_release;
         ");
         $request->bindParam(':id',$id);
         $request->execute();
