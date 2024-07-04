@@ -15,8 +15,6 @@ $cardService = new CardService();
 <?=!empty($listMovies) ? "<h2>Filmography</h2>" : ""?>
 <?=$cardService->createListFilmographyActor($playedMovies,$director['genre'])?>
 
-
-
 <?php
 $title = $directorName;
 $titleText = $directorName;

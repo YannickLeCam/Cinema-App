@@ -10,10 +10,15 @@ $cardService = new CardService();
 
 
 
-<pre>
-    <?=var_dump($type,$listMovies)?>
-</pre>
-
+<div id="listCard">
+    <div id="research">
+        <form action="./index.php?action=listMovies" method="post">
+            <input type="text" name="titleContain" id="">
+            <input type="submit" name="SubmitSearchButton" value="Rechercher">
+        </form>
+    </div>
+    <?=$cardService->createCardsMovies($listMovies)?>
+</div>
 
 
 
@@ -21,8 +26,8 @@ $cardService = new CardService();
 
 
 <?php
-$title = "Liste des genres de films";
-$titleText = "Liste des genres de films";
+$title = $type['name'];
+$titleText = $type['name'];
 $content = ob_get_clean();
 require_once "view/template.php";
 ?>

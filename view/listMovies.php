@@ -22,13 +22,6 @@ echo $navService->navList();
     <?=$cardService->createCardsMovies($listMovies)?>
 </div>
 
-<pre>
-    
-</pre>
-
-
-
-
 
 
 
