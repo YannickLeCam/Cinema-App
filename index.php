@@ -13,7 +13,6 @@ spl_autoload_register(function ($class_name) {
     include $class_name.'.php';
 });
 
-$ctrlCinema = new CinemaController();
 $ctrlMovie = new MovieController();
 $ctrlActor = new ActorController();
 $ctrlRole = new RoleController();
@@ -45,9 +44,6 @@ if (isset($_GET["action"])) {
             break;
         case 'detailRole':
             $ctrlRole->detailRole($id);
-            break;
-        case 'newMovie':
-            $ctrlCinema->newMovie();
             break;
         case 'listTypes':
             $ctrlType->listTypes();
