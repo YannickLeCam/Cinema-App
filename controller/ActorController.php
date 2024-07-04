@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\ActorManager;
+use Model\DirectorManager;
 
 class ActorController {
 
@@ -30,11 +31,12 @@ class ActorController {
  * @param int id_movie The code you provided seems to have a couple of errors. Here are the
  * corrections:
  */
-    public function detailActor(int $id_movie){
+    public function detailActor(int $id){
         $actorManager = new ActorManager();
 
-        $actor = $actorManager->getActorDetail($id_movie);
-        $filmography = $actorManager->getRoleMovieOfActor($id_movie);
+        $actor = $actorManager->getActorDetail($id);
+        $filmography = $actorManager->getRoleMovieOfActor($id);
+        $productMovies = $actorManager->getProductMovies($id);
 
         require "view/detailActor.php";
     }

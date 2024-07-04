@@ -153,4 +153,21 @@ class ActorManager{
         return $request->fetchAll();
     }
 
+    public function getProductMovies(int $id){
+        $request = $this->pdo->prepare("
+            SELECT movie.name, movie.id_movie
+            FROM actor
+            JOIN person
+            ON person.id_person = actor.id_person
+            JOIN director
+            ON person.id_person = director.id_person
+            JOIN movie
+            ON movie.id_director = director.id_director
+            WHERE actor.id_actor = :id;
+        ");
+        $request->bindParam(':id',$id);
+        $request->execute();
+        return $request->fetchAll();
+    }
+
 }
