@@ -109,7 +109,7 @@ class CardService {
  * information. Each card includes a link to view more details about the role, with the role name
  * displayed as the card title.
  */
-    public function createCardsRoles($listRoles){
+    public function createCardsRoles($listRoles):string{
         $htmlContent ="";
         foreach ($listRoles as $role) {
             $htmlContent .= '<a href="./index.php?action=detailRole&id='.$role['id_role'].'"><div class="Card"><h4>'.$role['name'].'</h4></div></a>';
@@ -131,7 +131,7 @@ class CardService {
  * the types provided in the `` array. Each card includes a link to a detail page for the
  * specific type, displaying the type's name within the card.
  */
-    public function createCardsTypes($listTypes){
+    public function createCardsTypes($listTypes):string{
         $htmlContent ="";
         foreach ($listTypes as $type) {
             $htmlContent .= '<a href="./index.php?action=detailType&id='.$type['id_type'].'"><div class="Card"><h4>'.$type['name'].'</h4></div></a>';
@@ -156,7 +156,10 @@ class CardService {
         return $htmlContent;
     }
 
-    public function createListFilmographyActor (array $listCasting,$genre){
+    public function createListFilmographyActor (array $listCasting,$genre):string{
+        if (empty($listCasting)) {
+            return "";
+        }
         $htmlContent='<ul>';
         foreach ($listCasting as $key => $casting) {
             if ($genre == 'Female') {
@@ -166,6 +169,25 @@ class CardService {
             }
             $htmlContent.='<div class="card"><li>';
             $htmlContent.= 'A '.$incarne.' le role '.'<a href="./index.php?action=detailRole&id='.$casting['id_role'].'">'.$casting['roleName'].'</a> dans le film <a href="./index.php?action=detailMovie&id='.$casting['id_movie'].'">'.$casting['movieName'].'</a> </li>' ;
+            $htmlContent.='</div>';
+        }
+        $htmlContent.='</ul>';
+        return $htmlContent;
+    }
+
+    public function createListFilmographyDirector (array $productMovie,$genre):string{
+        if (empty($productMovie)) {
+            return "";
+        }
+        $htmlContent='<ul>';
+        foreach ($productMovie as $key => $movie) {
+            if ($genre == 'Female') {
+                $product = "réalisée";
+            }else {
+                $product = "réalisé";
+            }
+            $htmlContent.='<div class="card"><li>';
+            $htmlContent.= 'A '.$product.' le film <a href=./index.php?action=detailMovie&id="'.$movie['id_movie'].'">'.$movie['name'].'</a></li>' ;
             $htmlContent.='</div>';
         }
         $htmlContent.='</ul>';

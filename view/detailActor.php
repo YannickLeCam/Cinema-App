@@ -22,7 +22,7 @@ if (!empty($productMovies)) {
 HTML;
     echo "<ul>";
     foreach ($productMovies as $movie) {
-        echo '<div class="card"><li> A produit <a href="./index.php?action=movieDetail&id='.$movie['id_movie'].'">'.$movie['name'].'</a></li> </div>';
+        echo '<div class="card"><li> A produit <a href="./index.php?action=detailMovie&id='.$movie['id_movie'].'">'.$movie['name'].'</a></li> </div>';
     }
     echo "</ul>";
 }

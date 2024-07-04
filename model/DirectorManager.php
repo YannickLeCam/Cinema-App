@@ -148,5 +148,25 @@ class DirectorManager{
         $request->execute();
         return $request->fetchAll();
     }
+    public function getPlayedMovies(int $id){
+        $request = $this->pdo->prepare("
+            SELECT role.name AS roleName, movie.name AS movieName, movie.id_movie , role.id_role
+            FROM director
+            JOIN person
+            ON person.id_person = director.id_person
+            JOIN actor
+            ON actor.id_person = person.id_person
+            JOIN casting
+            ON casting.id_actor = actor.id_actor
+            JOIN role
+            ON role.id_role = casting.id_role
+            JOIN movie
+            ON movie.id_movie = casting.id_movie
+            WHERE director.id_director = :id;
+        ");
+        $request->bindParam(':id',$id);
+        $request->execute();
+        return $request->fetchAll();
+    }
 
 }

@@ -38,6 +38,7 @@ class DirectorController {
         $directorManager = new DirectorManager();
         $director = $directorManager->getDirectorDetail($id);
         $listMovies = $directorManager->getMovieOfDirector($id);
+        $playedMovies = $directorManager->getPlayedMovies($id);
 
         require 'view/detailDirector.php';
     }
