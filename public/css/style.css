@@ -36,14 +36,17 @@ header #logo {
 }
 
 header nav{
-    justify-self: center;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 
 header nav ul{
     display: flex;
-    gap : 10%;
+    gap : 20%;
     margin:0;
     padding: 0;
+    justify-content: center;
 }
 
 header nav li{
@@ -347,14 +350,27 @@ li{
     color: rgb(49, 49, 49);
 }
 
+.hide{
+    display: none;
+}
+
+#openBurgerMenu,#closeBurgerMenu{
+    display: none;
+}
 @media only screen and (max-width: 1200px) {
     #listCard{
         grid-template-columns: repeat(2,1fr);
     }
+    header nav ul{
+        gap : 10%
+    }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
 
+    #menu{
+        display: none;
+    }
     #listCard{
         padding-top: 10vh;
         grid-template-columns: repeat(1,1fr);
@@ -383,6 +399,45 @@ li{
     }
     #wrapperWithoutPicture{
         padding: 2%;
+    }
+    header.deroule #menu{
+        position: absolute;
+        display: flex;
+        z-index: 99;
+        bottom: 0;
+        height: 20vh;
+    }
+    header.deroule #menu ul{
+        flex-direction: column;
+    }
+    #openBurgerMenu,#closeBurgerMenu{
+        position: absolute;
+        right: 5%;
+        font-size: xx-large;
+    }
+    #openBurgerMenu{
+        display: flex;
+    }
+    header #logo{
+        width: 100%;
+        left: unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    header.deroule {
+        height: 28vh;
+        transition: 1s;
+    }
+    header.deroule #openBurgerMenu{
+        display: none;
+    }
+    header.deroule #closeBurgerMenu{
+        display: flex;
+        top:8%;
+    }
+    header.deroule #logo{
+        top: 3%;
     }
 
 }
