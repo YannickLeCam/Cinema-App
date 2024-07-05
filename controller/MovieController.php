@@ -101,7 +101,7 @@ class MovieController {
                 }
             }
             if (!$directorChecked) {
-                $this->errorCreate("Il semblerait y avoir une erreure sur la selection du réalisateur . . .",$data);
+                $this->errorCreate("Il semblerait y avoir une erreur sur la selection du réalisateur . . .",$data);
             }
             $typeChecked = false;
             foreach($data['types'] as $typeSelected){
@@ -112,7 +112,7 @@ class MovieController {
                 }
                 if (!$typeChecked) {
                     die;
-                    $this->errorCreate("Il semblerait y avoir une erreure sur le genre du film",$data);
+                    $this->errorCreate("Il semblerait y avoir une erreur sur le genre du film",$data);
                 }
                 $typeChecked=false;
             }
@@ -227,7 +227,7 @@ class MovieController {
     public function editMovie(int $id):void{
         $movieManager=new MovieManager();
         $data['movie']=$movieManager->getMovieDetail($id);
-        $data['actors']=$movieManager->getActorRoleOfMovie($id);
+        $data['casting']=$movieManager->getActorRoleOfMovie($id);
         $data['types']=$movieManager->getTypesOfMovie($id);
         $data['directors']=$movieManager->getDirectorOfMovie($id);
         $actorManager = new ActorManager();

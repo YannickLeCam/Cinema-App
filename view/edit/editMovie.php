@@ -62,9 +62,85 @@ HTML;
     $htmlContent .= "</select>";
     return $htmlContent;
 }
+
+
+function createCastingEdit(array $listActors,array $listRoles,array $listSelectedActorsRoles):string{
+    $htmlContent="";
+    if (empty($listSelectedActorsRoles)) {
+        //On en créer un vièrge pour eviter de connecter le JS a la BDD 
+            //Actor part
+            $htmlContent.="<div class='inputActorRole'>";
+            $htmlContent .= "<select name=casting['actor'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            $htmlContent .= "<option value='0' selected>Choisir un acteur</option>";
+            foreach ($listActors as $actor) {
+                $actorName = $actor['name'].' '.$actor['firstname'];
+                $actorId = $actor['id_actor'];
+                $htmlContent.= <<<HTML
+                    <option value="$actorId">$actorName</option>
+HTML;
+            }
+            $htmlContent .= "</select>";
+    
+            //role part
+            $htmlContent .= "<select name=casting['role'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            $htmlContent .= "<option value='0' selected>Choisir un role</option>";
+            foreach ($listRoles as $role) {
+                $roleName = $role['name'];
+                $roleId = $role['id_role'];
+                $htmlContent.= <<<HTML
+                    <option value="$roleId">$roleName</option>
+HTML;
+            }
+            $htmlContent .= "</select>";
+            $htmlContent .= "<i class='fa-solid fa-xmark deleteCastingInput'></i>";
+            $htmlContent.="</div>";
+    }else {
+        foreach ($listSelectedActorsRoles as $selected) {
+            //Actor part
+            $htmlContent.="<div class='inputActorRole'>";
+            $htmlContent .= "<select name=casting['actor'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            foreach ($listActors as $actor) {
+                $actorName = $actor['name'].' '.$actor['firstname'];
+                $actorId = $actor['id_actor'];
+                if ($selected['id_actor']==$actor['id_actor']) {
+                    $complement="selected";
+                }else {
+                    $complement="";
+                }
+                $htmlContent.= <<<HTML
+                    <option value="$actorId" $complement>$actorName</option>
+HTML;
+            }
+            $htmlContent .= "</select>";
+    
+            //role part
+            $htmlContent .= "<select name=casting['role'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            foreach ($listRoles as $key=>$role) {
+                $roleName = $role['name'];
+                $roleId = $role['id_role'];
+                if ($roleId==$selected['id_role']) {
+                    $complement="selected";
+                }else {
+                    $complement="";
+                }
+                $htmlContent.= <<<HTML
+                    <option value="$roleId" $complement>$roleName</option>
+HTML;
+            }
+            $htmlContent .= "</select>";
+            $htmlContent .= "<i class='fa-solid fa-xmark deleteCastingInput'></i>";
+            $htmlContent.="</div>";
+        }
+    
+    }
+    
+
+    return $htmlContent;
+}
 ?>
 
-<form action="./index.php?action=createMovie" method="post">
+<form action="./index.php?action=editMovie" method="post">
+    <h2>Film</h2>
     <div class="form-floating mb-3">
         <input type="text" name="name" id="floatingInput" class="form-control" value="<?=isset($data['movie']["name"])?htmlentities($data['movie']["name"]):""?>" placeholder="Entrer le titre du film :">
         <label for="floatingInput">Entrer le tire du film :</label>
@@ -100,13 +176,26 @@ HTML;
         <textarea name="synopsis" id="floatingTextarea2" class="form-control" placeholder="Entrer le synopsis du film :"><?=(isset($data['movie']['synopsis']) ? $data['movie']['synopsis'] :"")?></textarea>
         <label for="floatingTextarea2">Entrer le synopsis du film :</label>
     </div>
+
+    <div id="castingParts">
+        <h2>Casting</h2>
+        <div id='gridContainer'>
+            <div class="inputActorRole">            
+                <h4>Acteurs</h4>
+                <h4>Roles</h4>
+                <h4>Enlever</h4>
+            </div>
+            <?=createCastingEdit($listActors,$listRoles,$data['casting'])?>
+        </div>
+        <div class="btn btn-success" id="buttonAddNewLine"><i class="fa-solid fa-user-plus"></i> Ajouter un nouveau personnage</div>
+    </div>
  
-    <input type="submit" name="SubmitMovieForm" class="btn btn-secondary" value="Ajouter">
+    <input type="submit" name="SubmitMovieForm" class="btn btn-secondary" value="Valider les modifications">
 </form>
 
 
 
-
+<script src="public/js/editButton.js"></script>
 
 <?php
 $title = "Edit-".$data['movie']['name'];
