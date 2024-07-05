@@ -281,4 +281,64 @@ class MovieManager{
         $request->execute();
         return $request->fetchAll();
     }
+
+    public function updateMovie(int $id,array $data):bool{
+        var_dump($data);
+
+        try {
+            $request = $this->pdo->prepare("
+                UPDATE movie
+                SET 
+                name = :name,
+                date_release = :date_release,
+                duration = :duration,
+                synopsis = :synopsis,
+                poster = :poster,
+                rate = :rate,
+                id_director = :director
+                WHERE id_movie = :id_movie;
+            ");
+            $request->bindParam(':name',$data['name']);
+            $request->bindParam(':date_release',$data["date_release"]);
+            $request->bindParam(':duration',$data['duration']);
+            $request->bindParam(':synopsis',$data['synopsis']);
+            $request->bindParam(':poster',$data['poster']);
+            $request->bindParam(':rate',$data['rate']);
+            $request->bindParam(':director',$data['id_director']);
+            $request->bindParam('id_movie',$id);
+
+            if($request->execute()){
+
+                $request = $this->pdo->prepare("
+                    DELETE FROM be
+                    WHERE id_movie=:id;
+                ");
+                $request->bindParam(':id',$id);
+                $request->execute();
+                $request= $this->pdo->prepare('
+                        INSERT INTO be(
+                        id_movie,
+                        id_type)
+                        VALUES (
+                        :id_movie,
+                        :id_type);
+                ');
+
+                foreach ($data['types'] as $idType) {
+                    $request->bindParam(':id_movie',$id);
+                    $request->bindParam(':id_type',$idType);
+                    if(!$request->execute()){
+                        throw new \Exception("L'insertion du genre semble avoir échoué . . .");
+                    }
+                }
+                return true;
+
+
+            }else {
+                return false;
+            }
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }

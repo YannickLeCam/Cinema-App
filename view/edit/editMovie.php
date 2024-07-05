@@ -139,7 +139,7 @@ HTML;
 }
 ?>
 
-<form action="./index.php?action=editMovie" method="post">
+<form action="./index.php?action=editMovie&id=<?=$data['movie']['id_movie']?>" method="post">
     <h2>Film</h2>
     <div class="form-floating mb-3">
         <input type="text" name="name" id="floatingInput" class="form-control" value="<?=isset($data['movie']["name"])?htmlentities($data['movie']["name"]):""?>" placeholder="Entrer le titre du film :">
@@ -162,7 +162,7 @@ HTML;
     </div>
 
     <div class="form-floating mb-3">
-        <input type="url" name="posterURL" id="floatingInput" class="form-control" value="<?=(isset($data['movie']['posterURL']) ? $data['movie']['posterURL'] :"")?>" placeholder="Entrer l'affiche du film :">
+        <input type="url" name="posterURL" id="floatingInput" class="form-control" value="<?=(isset($data['movie']['poster']) ? $data['movie']['poster'] :"")?>" placeholder="Entrer l'affiche du film :">
         <label for="floatingInput">Entrer l'affiche du film :</label>    
     </div>
 
@@ -190,7 +190,7 @@ HTML;
         <div class="btn btn-success" id="buttonAddNewLine"><i class="fa-solid fa-user-plus"></i> Ajouter un nouveau personnage</div>
     </div>
  
-    <input type="submit" name="SubmitMovieForm" class="btn btn-secondary" value="Valider les modifications">
+    <input type="submit" class="btn btn-secondary" name="submitEditMovie" value="Ajouter">
 </form>
 
 

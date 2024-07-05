@@ -224,7 +224,56 @@ class MovieController {
         die;
     }
 
+    private function verifyMovieData($data,$listDirectors,$listTypes){
+        if ($data['name']=="") {
+            $data["error"]="Il semble manquer le titre du film . . .";
+            return $data;
+        }
+        if ($data["synopsis"]=="") {
+            $data["error"]="Il semble manquer le synopsis du film . . .";
+            return $data;
+        }
+        if ($data['rate']=="" || $data['rate']<0 ||$data['rate']>10) {
+            $data["error"]="L'evaluation du film semble etre invalide . . .";
+            return $data;
+        }
+        if ($data['duration']=="" || $data["duration"]<0 ||$data['duration']>1440) {
+            $data["error"]="La durée du film semble etre invalide . . .";
+            return $data;
+        }
+        if($data['date_release']==null || $data['date_release']==""){
+            $data["error"]="La date de sortie du film semble etre invalide . . .";
+            return $data;
+        }
+        $directorChecked = false;
+        foreach ($listDirectors as $director) {
+            if (in_array($data['id_director'],$director)) {
+                $directorChecked = true;
+            }
+        }
+        if (!$directorChecked) {
+            $data["error"]="Il semblerait y avoir une erreur sur la selection du réalisateur . . .";
+            return $data;
+        }
+        $typeChecked = false;
+        foreach($data['types'] as $typeSelected){
+            foreach ($listTypes as $type) {
+                if (in_array($typeSelected,$type)) {
+                    $typeChecked=true;
+                }
+            }
+            if (!$typeChecked) {
+                $data["error"]="Il semblerait y avoir une erreur sur la selection des types . . .";
+                return $data;
+            }
+            $typeChecked=false;
+        }
+
+        return $data;
+    }
+
     public function editMovie(int $id):void{
+        var_dump($_POST);
         $movieManager=new MovieManager();
         $data['movie']=$movieManager->getMovieDetail($id);
         $data['casting']=$movieManager->getActorRoleOfMovie($id);
@@ -239,7 +288,36 @@ class MovieController {
         $directorManager = new DirectorManager();
         $listDirectors = $directorManager->getDirectors();
         if (isset($_POST['submitEditMovie'])) {
-            
+            $data['movie']['name'] = filter_input(INPUT_POST,'name' , FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['movie']['date_release'] = filter_input(INPUT_POST, 'date_release', FILTER_VALIDATE_REGEXP, array(
+                "options" => array("regexp" => '/^\d{4}-\d{2}-\d{2}$/')));
+            $data['movie']['duration'] = filter_input(INPUT_POST,'duration',FILTER_VALIDATE_INT);
+            $data['movie']['synopsis'] = filter_input(INPUT_POST,'synopsis',FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['movie']['rate'] = filter_input(INPUT_POST , 'rate' , FILTER_VALIDATE_FLOAT);
+            $data['movie']['id_director'] = filter_input(INPUT_POST,'id_director',FILTER_VALIDATE_INT);
+            if (isset($_POST['type']) && is_array($_POST['type'])) {
+                $data['movie']["types"] = filter_var($_POST['type'], FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY);
+            } else {
+                $data['movie']["types"] = [];
+            }
+            if (filter_input(INPUT_POST,'posterURL',FILTER_VALIDATE_URL)) {
+                $data['movie']['poster'] = filter_input(INPUT_POST,'posterURL',FILTER_SANITIZE_URL);
+            }else {
+                $data['movie']["poster"] = "";
+            }
+            $data['movie']=$this->verifyMovieData($data['movie'],$listDirectors,$listTypes);
+            if (isset($data['error'])) {
+                $_SESSION["error"]=$data['error'];
+                $_SESSION["movieData"]=$data;
+                header('Location:./index.php?action=editMovie&id='.$id);
+                die;
+            }
+            $movieManager->updateMovie($id,$data['movie']);
+            header('Location:./index.php?action=editMovie&id='.$id);
+            die;
+            // donnée movie sont saint ! on peut les update comme ca !
+            //TO DO rendre le casting saint avec filter var
+
         }
 
         require 'view/edit/editMovie.php';

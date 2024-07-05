@@ -10,7 +10,6 @@ console.log(tabButtonDelete)
 function updateEventListener() {
 
     for (let index = 0; index < tabButtonDelete.length; index++) {
-        console.log('Je fais des truc');
         const element = tabButtonDelete[index];
         element.addEventListener("click",function(){
             this.parentNode.remove();
@@ -23,7 +22,6 @@ updateEventListener();
 
 boutonAddNewLine.addEventListener("click",function () {
     insertNode=inputCastingClone.cloneNode(true);
-    console.log(characterBox);
     characterBox.appendChild(insertNode);
     updateEventListener();
 }
