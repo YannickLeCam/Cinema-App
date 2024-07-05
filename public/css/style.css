@@ -346,12 +346,21 @@ li{
     color:rgb(99, 99, 99);
 }
 
-#wrapper a:visited #wrapper a:checked{
+#wrapper a:visited ,#wrapper a:checked{
     color: rgb(49, 49, 49);
 }
 
 .hide{
     display: none;
+}
+
+.card a,a:checked,#wrapper a:visited{
+    color: rgb(49, 49, 49);
+    font-weight: bold;
+}
+
+.card a:hover{
+    color: rgb(99, 99, 99);
 }
 
 #openBurgerMenu,#closeBurgerMenu{

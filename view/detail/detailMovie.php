@@ -28,6 +28,10 @@ $cardService = new CardService();
         <?=$movie['synopsis']?>
         <?=!empty($listCasting)?"<h2>Casting</h2>":""?>
         <?=$cardService->createListCasting($listCasting)?>
+        <div id="button">
+            <a class="btn btn-danger" href="./index.php?action=deleteMovie&id=<?=$movie['id_movie']?>">Supprimer</a>
+            <a class="btn btn-warning" href="./index.php?action=editMovie&id=<?=$movie['id_movie']?>">Modifier</a>
+        </div>
     </div>
 
 

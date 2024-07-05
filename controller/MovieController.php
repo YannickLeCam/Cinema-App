@@ -224,4 +224,24 @@ class MovieController {
         die;
     }
 
+    public function editMovie(int $id):void{
+        $movieManager=new MovieManager();
+        $data['movie']=$movieManager->getMovieDetail($id);
+        $data['actors']=$movieManager->getActorRoleOfMovie($id);
+        $data['types']=$movieManager->getTypesOfMovie($id);
+        $data['directors']=$movieManager->getDirectorOfMovie($id);
+        $actorManager = new ActorManager();
+        $listActors = $actorManager->getActors(); // pour le select
+        $typeManager = new TypeManager();
+        $listTypes = $typeManager->getTypes();
+        $roleManager = new RoleManager();
+        $listRoles = $roleManager->getRoles();
+        $directorManager = new DirectorManager();
+        $listDirectors = $directorManager->getDirectors();
+        if (isset($_POST['submitEditMovie'])) {
+            
+        }
+
+        require 'view/edit/editMovie.php';
+    }
 }
