@@ -282,6 +282,22 @@ class MovieManager{
         return $request->fetchAll();
     }
 
+/**
+ * The function `updateMovie` updates a movie record in a database with the provided data and handles
+ * related records for movie genres.
+ * 
+ * Args:
+ *   id (int): The `updateMovie` function you provided seems to be updating a movie record in a
+ * database. The function takes two parameters: `$id`, which is the ID of the movie to be updated, and
+ * `$data`, which is an array containing the updated movie information.
+ *   data (array): Based on the provided code snippet, it seems like you are trying to update a movie
+ * record in a database along with related records in other tables. The `updateMovie` function takes an
+ * `$id` representing the movie ID and an array `$data` containing the updated movie information.
+ * 
+ * Returns:
+ *   This function returns a boolean value. It returns `true` if the movie update operation is
+ * successful, and `false` if there is an error during the update process.
+ */
     public function updateMovie(int $id,array $data):bool{
         var_dump($data);
 

@@ -120,6 +120,20 @@ class TypeManager{
         
         return false;
     }
+/**
+ * The function `getTypesSearch` retrieves all types from a database table that match a given search
+ * content.
+ * 
+ * Args:
+ *   content (string): The `getTypesSearch` function takes a string parameter named `` which is
+ * used to search for types in a database table named `type`. The function prepares and executes a SQL
+ * query to select all rows from the `type` table where the `name` column matches the provided content
+ * (using
+ * 
+ * Returns:
+ *   An array of results from the database query that selects all rows from the "type" table where the
+ * "name" column is like the provided content, sorted by name.
+ */
     public function getTypesSearch(string $content):array{
         $content = '%' . $content . '%';
         $request = $this->pdo->prepare("

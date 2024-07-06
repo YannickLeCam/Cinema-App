@@ -272,6 +272,16 @@ class MovieController {
         return $data;
     }
 
+/**
+ * The function `editMovie` in PHP is responsible for editing movie details and updating them in the
+ * database based on user input.
+ * 
+ * Args:
+ *   id (int): The `editMovie` function you provided seems to handle the editing of movie details based
+ * on the ID passed to it. It retrieves movie details, casting information, types, directors, actors,
+ * and roles related to the movie with the given ID. It also handles form submissions for updating
+ * movie information.
+ */
     public function editMovie(int $id):void{
         var_dump($_POST);
         $movieManager=new MovieManager();

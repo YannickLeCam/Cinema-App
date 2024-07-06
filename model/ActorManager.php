@@ -143,6 +143,18 @@ class ActorManager{
         }
     }
 
+/**
+ * The function `getActorsSearch` retrieves actors based on a search query for their name or firstname.
+ * 
+ * Args:
+ *   content (string): The `getActorsSearch` function takes a string parameter named ``, which
+ * is used to search for actors based on their name or firstname. The function prepares a SQL query to
+ * select data from the `person` and `actor` tables where the `id_person` matches between the two
+ * tables
+ * 
+ * Returns:
+ *   An array of actors matching the search content provided.
+ */
     public function getActorsSearch(string $content):array{
         $content = '%'.$content.'%';
         $request = $this->pdo->prepare("

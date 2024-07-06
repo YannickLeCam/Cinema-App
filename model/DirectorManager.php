@@ -139,6 +139,19 @@ class DirectorManager{
         }
     }
 
+/**
+ * The function `getDirectorsSearch` retrieves directors based on a search query for their name or
+ * firstname.
+ * 
+ * Args:
+ *   content (string): The `getDirectorsSearch` function takes a string parameter named ``,
+ * which is used to search for directors based on their name or firstname. The function then prepares
+ * and executes a SQL query to retrieve the directors matching the search criteria. The `%` signs are
+ * added to the content to perform a
+ * 
+ * Returns:
+ *   An array of directors matching the search content provided.
+ */
     public function getDirectorsSearch(string $content):array{
         $content = '%'.$content.'%';
         $request = $this->pdo->prepare("
@@ -151,6 +164,20 @@ class DirectorManager{
         $request->execute();
         return $request->fetchAll();
     }
+
+/**
+ * This PHP function retrieves information about movies played by a specific director based on their
+ * ID.
+ * 
+ * Args:
+ *   id (int): The `getPlayedMovies` function retrieves information about movies played by a director
+ * with the specified ID. The function executes a SQL query to fetch details such as the role name,
+ * movie name, movie ID, role ID, and release year of movies directed by the director.
+ * 
+ * Returns:
+ *   The `getPlayedMovies` function is returning an array of data that includes the role name, movie
+ * name, movie ID, role ID, and release year of movies played by a director with the specified ID.
+ */
     public function getPlayedMovies(int $id){
         $request = $this->pdo->prepare("
             SELECT role.name AS roleName, movie.name AS movieName, movie.id_movie , role.id_role , YEAR(movie.date_release) AS date_release

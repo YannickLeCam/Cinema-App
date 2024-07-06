@@ -119,6 +119,19 @@ class RoleManager{
         }
 
     }
+    
+/**
+ * The function `getRolesSearch` retrieves roles from a database that match a given search content.
+ * 
+ * Args:
+ *   content (string): The `getRolesSearch` function takes a string parameter named ``, which
+ * is used to search for roles in a database table named `role`. The function prepares a SQL query to
+ * select all columns from the `role` table where the `name` column is like the provided content. The
+ * content
+ * 
+ * Returns:
+ *   An array of roles that match the search content provided.
+ */
 
     public function getRolesSearch(string $content):array{
         $content = '%'. $content . '%';
