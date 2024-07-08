@@ -16,7 +16,7 @@ echo $navService->navList();
     <div id="research">
         <form action="./index.php?action=listMovies" method="post">
             <input type="text" name="titleContain" id="">
-            <input type="submit" name="SubmitSearchButton" value="Rechercher">
+            <input type="submit" class="btn btn-secondary" name="SubmitSearchButton" value="Rechercher">
         </form>
     </div>
     <?=$cardService->createCardsMovies($listMovies)?>

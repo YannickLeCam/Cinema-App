@@ -15,7 +15,7 @@ echo $navService->navList();
     <div id="research">
         <form action="./index.php?action=listActors" method="post">
             <input type="text" name="nameContain" id="">
-            <input type="submit" name="SubmitSearchButton" value="Rechercher">
+            <input type="submit" name="SubmitSearchButton" class="btn btn-secondary" value="Rechercher">
         </form>
     </div>
     <?=$cardService->createCardsTypes($listTypes)?>

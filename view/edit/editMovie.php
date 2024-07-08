@@ -189,9 +189,12 @@ HTML;
         </div>
         <div class="btn btn-success" id="buttonAddNewLine"><i class="fa-solid fa-user-plus"></i> Ajouter un nouveau personnage</div>
     </div>
- 
-    <input type="submit" class="btn btn-secondary" name="submitEditMovie" value="Ajouter">
-    <input type="submit" class="btn btn-danger" name="submitDeleteMovie" value="Supprimer le film">
+    
+    <div id="buttonEditMovie">
+        <input type="submit" class="btn btn-danger" name="submitDeleteMovie" value="Supprimer le film">
+        <input type="submit" class="btn btn-secondary" name="submitEditMovie" value="Ajouter">
+    </div>
+   
 
 </form>
 

@@ -13,7 +13,7 @@ echo $navService->navList();
     <div id="research">
         <form action="./index.php?action=listDirectors" method="post">
             <input type="text" name="nameContain" id="">
-            <input type="submit" name="SubmitSearchButton" value="Rechercher">
+            <input type="submit" name="SubmitSearchButton" class="btn btn-secondary" value="Rechercher">
         </form>
     </div>
     <?=$cardService->createCardsDirectors($directors)?>
