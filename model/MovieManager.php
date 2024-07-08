@@ -299,8 +299,6 @@ class MovieManager{
  * successful, and `false` if there is an error during the update process.
  */
     public function updateMovie(int $id,array $data):bool{
-        var_dump($data);
-
         try {
             $request = $this->pdo->prepare("
                 UPDATE movie
@@ -356,5 +354,41 @@ class MovieManager{
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    public function updateCasting(int $idMovie , array $data):bool{
+        try {
+            $request = $this->pdo->prepare("
+                DELETE FROM casting
+                WHERE id_movie = :id;
+            ");
+            $request->bindParam(':id',$idMovie);
+            $request->execute();
+
+            $request = $this->pdo->prepare("
+                INSERT INTO casting (
+                id_movie,
+                id_role,
+                id_actor)
+                VALUES (
+                :id_movie,
+                :id_role,
+                :id_actor);
+            ");
+            $request->bindParam(":id_movie",$idMovie);
+            foreach ($data as $casting) {
+                $request->bindParam(':id_role',$casting['role']);
+                $request->bindParam(':id_actor',$casting['actor']);
+                if (!$request->execute()) {
+                    throw new \Exception("Error Processing execute SQL ERROR", 1);
+                    
+                }
+            }
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+
+
     }
 }

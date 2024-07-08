@@ -283,7 +283,6 @@ class MovieController {
  * movie information.
  */
     public function editMovie(int $id):void{
-        var_dump($_POST);
         $movieManager=new MovieManager();
         $data['movie']=$movieManager->getMovieDetail($id);
         $data['casting']=$movieManager->getActorRoleOfMovie($id);
@@ -322,11 +321,93 @@ class MovieController {
                 header('Location:./index.php?action=editMovie&id='.$id);
                 die;
             }
-            $movieManager->updateMovie($id,$data['movie']);
-            header('Location:./index.php?action=editMovie&id='.$id);
-            die;
+
+            
             // donnée movie sont saint ! on peut les update comme ca !
             //TO DO rendre le casting saint avec filter var
+            if (isset($_POST['casting']['actor']) && isset($_POST['casting']['role'])) {
+    
+                // Définir les options de filtrage
+                $options = array(
+                    'filter' => FILTER_VALIDATE_INT,
+                    'flags'  => FILTER_REQUIRE_ARRAY
+                );
+                
+                // Filtrer les tableaux
+                $filteredActors = filter_var($_POST['casting']['actor'], FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY);
+                $filteredRoles = filter_var($_POST['casting']['role'],FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY);
+                
+                // Vérifier les résultats du filtrage
+                if ($filteredActors !== null && $filteredActors !== false &&
+                    $filteredRoles !== null && $filteredRoles !== false) {
+                        
+                    if (count($filteredActors)!= count($filteredRoles)) {
+                        $_SESSION["error"]="Le nombre de roles et le nombre d'acteurs ne sont pas cohérent . . .";
+                        $_SESSION["movieData"]=$data;
+                        header('Location:./index.php?action=editMovie&id='.$id);
+                        die;
+                    }
+
+                    $casting = [];
+                    foreach ($filteredRoles as $key => $idRoleSelected) {
+                        $checked=false;
+                        foreach ($listRoles as $role) {
+                            if (in_array($idRoleSelected,$role)) {
+                                $checked=true;
+                            }
+                        }
+                        if (!$checked) {
+                            $_SESSION["error"]="Le role selectionnée n'existe pas/plus . . .";
+                            $_SESSION["movieData"]=$data;
+                            header('Location:./index.php?action=editMovie&id='.$id);
+                            die;
+                        }else {
+                            $casting[$key]['role']=$idRoleSelected;
+                        }
+                    }
+                    foreach ($filteredActors as $key => $idActorSelected) {
+                        $checked=false;
+                        foreach ($listActors as $actor) {
+                            if (in_array($idActorSelected,$actor)) {
+                                $checked=true;
+                            }
+                        }
+                        if (!$checked) {
+                            $_SESSION["error"]="L'acteur selectionnée n'existe pas/plus . . .";
+                            $_SESSION["movieData"]=$data;
+                            header('Location:./index.php?action=editMovie&id='.$id);
+                            die;
+                        }else {
+                            $casting[$key]['actor']=$idActorSelected;
+                        }
+                    }
+                    $data['casting']=$casting;
+
+
+                } else {
+                    // Gérer les erreurs de filtrage
+                    echo "Erreur dans le filtrage des données du casting.";
+                }
+
+                if ($movieManager->updateMovie($id,$data['movie'])) {
+                    if ($movieManager->updateCasting($id,$data['casting'])) {
+                        $_SERVER['success']="La modification du film a bien été prit en compte";
+                        header('Location:./index.php?action=editMovie&id='.$id);
+                        die;
+                    }
+                    else {
+                        $_SESSION["error"]="Probleme lors de l'update de la table casting . . .";
+                        header('Location:./index.php?action=editMovie&id='.$id);
+                        die;
+                    }
+                }else {
+                    $_SESSION["error"]="Probleme lors de l'update de la table Movie .  . .";
+                    header('Location:./index.php?action=editMovie&id='.$id);
+                    die;
+                }
+                
+            }
+            die;
 
         }
 

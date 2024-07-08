@@ -70,7 +70,7 @@ function createCastingEdit(array $listActors,array $listRoles,array $listSelecte
         //On en créer un vièrge pour eviter de connecter le JS a la BDD 
             //Actor part
             $htmlContent.="<div class='inputActorRole'>";
-            $htmlContent .= "<select name=casting['actor'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            $htmlContent .= "<select name=casting[actor][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
             $htmlContent .= "<option value='0' selected>Choisir un acteur</option>";
             foreach ($listActors as $actor) {
                 $actorName = $actor['name'].' '.$actor['firstname'];
@@ -82,7 +82,7 @@ HTML;
             $htmlContent .= "</select>";
     
             //role part
-            $htmlContent .= "<select name=casting['role'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            $htmlContent .= "<select name=casting[role][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
             $htmlContent .= "<option value='0' selected>Choisir un role</option>";
             foreach ($listRoles as $role) {
                 $roleName = $role['name'];
@@ -98,7 +98,7 @@ HTML;
         foreach ($listSelectedActorsRoles as $selected) {
             //Actor part
             $htmlContent.="<div class='inputActorRole'>";
-            $htmlContent .= "<select name=casting['actor'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            $htmlContent .= "<select name=casting[actor][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
             foreach ($listActors as $actor) {
                 $actorName = $actor['name'].' '.$actor['firstname'];
                 $actorId = $actor['id_actor'];
@@ -114,7 +114,7 @@ HTML;
             $htmlContent .= "</select>";
     
             //role part
-            $htmlContent .= "<select name=casting['role'][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
+            $htmlContent .= "<select name=casting[role][] id='directorSelect' class='form-select form-select-lg' aria-label='Large select example'>";
             foreach ($listRoles as $key=>$role) {
                 $roleName = $role['name'];
                 $roleId = $role['id_role'];
