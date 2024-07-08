@@ -405,12 +405,21 @@ class MovieController {
                     header('Location:./index.php?action=editMovie&id='.$id);
                     die;
                 }
-                
             }
-            die;
 
+        }if (isset($_POST['submitDeleteMovie'])) {
+            $movieManager->deleteMovie($id);
+            header('Location:./index.php?action=listMovie');
+            die;
         }
 
         require 'view/edit/editMovie.php';
+    }
+
+    public function deleteMovie(int $id):void{
+        $movieManager = new MovieManager();
+        $movieManager->deleteMovie($id);
+        header('Location:./index.php?action=listMovie');
+        die;
     }
 }

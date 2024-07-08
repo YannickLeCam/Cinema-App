@@ -381,6 +381,13 @@ li{
     font-size: xx-large;
     border-radius: 50%;
 }
+
+#listTypes{
+    margin: 0;
+    display: flex;
+    gap: 2%;
+}
+
 @media only screen and (max-width: 1200px) {
     #listCard{
         grid-template-columns: repeat(2,1fr);

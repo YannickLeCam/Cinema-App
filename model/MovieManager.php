@@ -388,7 +388,20 @@ class MovieManager{
         } catch (\Exception $e) {
             return false;
         }
+    }
 
+    public function deleteMovie($idMovie):bool{
+        try {
+            $request = $this->pdo->prepare('
+                DELETE FROM movie
+                WHERE id_movie=:id;
+            ');
+            $request->bindParam(':id',$idMovie);
+            $request->execute();
+            return true;
 
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

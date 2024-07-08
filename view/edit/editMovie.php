@@ -191,6 +191,8 @@ HTML;
     </div>
  
     <input type="submit" class="btn btn-secondary" name="submitEditMovie" value="Ajouter">
+    <input type="submit" class="btn btn-danger" name="submitDeleteMovie" value="Supprimer le film">
+
 </form>
 
 
